@@ -91,7 +91,9 @@ abstract class  LocaleKeys {
   static const explore_page_title = 'explore_page_title';
   static const explore_page_post = 'explore_page_post';
   static const maps_title = 'maps_title';
+
   static const earthquaker_title = 'earthquaker_title';
+
   static const make_your_voice_heard_reports = 'make_your_voice_heard_reports';
   static const make_your_voice_heard_choose = 'make_your_voice_heard_choose';
   static const make_your_voice_heard_report_missing = 'make_your_voice_heard_report_missing';

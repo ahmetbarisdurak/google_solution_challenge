@@ -18,7 +18,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 
-
 class _ProfileScreenState extends State<ProfileScreen> {
   final ReportService _reportService = ReportService();
   final user = FirebaseAuth.instance.currentUser!;
@@ -26,7 +25,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   String username = "";
   String description = "";
-  String profileImage = "";
   int posts = 0;
   final String _language='';
 
@@ -62,7 +60,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         String b = value['surname'] ?? ''; // surname null ise boş string ata
         username = "$a $b";
         description = value['description'];
-        profileImage = value['profileImage'];
       });
     }
   }
@@ -75,14 +72,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           posts++;
         });
       }
-    }
-  }
-
-  profileReplace() {
-    if (profileImage == "") {
-      return const AssetImage("assets/images/profile_anonym.webp");
-    } else {
-      return NetworkImage(profileImage);
     }
   }
 

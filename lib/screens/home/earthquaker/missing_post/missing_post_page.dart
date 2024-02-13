@@ -1,18 +1,16 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/screens/components/CustomSnackBarContent.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:google_solution_challenge/services/report_service.dart';
 
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // ignore: implementation_imports, unused_import
-import 'package:google_maps_place_picker_mb/src/google_map_place_picker.dart'; // do not import this yourself
+//import 'package:google_maps_place_picker_mb/src/google_map_place_picker.dart'; // do not import this yourself
 
 // Only to control hybrid composition and the renderer in Android
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
@@ -21,9 +19,10 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import '../../../../translations/locale_keys.g.dart';
 
 class MissingPostPage extends StatefulWidget {
+
   MissingPostPage({super.key});
 
-  static const kInitialPosition = LatLng(38.9637, 35.2433);
+  static const kInitialPosition = LatLng(38, 36);
 
   final GoogleMapsFlutterPlatform mapsImplementation =
       GoogleMapsFlutterPlatform.instance;
@@ -39,15 +38,12 @@ class _MissingPostPageState extends State<MissingPostPage> {
   String surname = "";
   final ReportService _reportService = ReportService();
   final postController = TextEditingController();
-  final ImagePicker _pickerImage = ImagePicker();
-  dynamic _pickImage;
-  var profileImage;
 
   // for map
   PickResult? selectedPlace;
   final bool _showPlacePickerInContainer = false;
   final bool _showGoogleMapInContainer = false;
-  String androidApiKey = "AIzaSyDqTggaCqOkh0DBWGiB3zXKO45ca9Lkq2c"; // API key for maps
+  String androidApiKey = "AIzaSyArrKwbIUKX0iZqzYWM4EtvNWbpAC0au1s"; // API key for maps
 
   bool _mapsInitialized = false;
   final String _mapsRenderer = "latest";
@@ -75,74 +71,15 @@ class _MissingPostPageState extends State<MissingPostPage> {
     });
   }
 
-  Widget imagePlace() {
-    if (profileImage != null) {
-      return Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Image(
-          image: FileImage(File(profileImage!.path)),
-        ),
-      );
-    } else {
-      if (_pickImage != null) {
-        return Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Image(
-            image: NetworkImage(_pickImage),
-          ),
-        );
-      } else {
-        return const SizedBox(
-          height: 10.0,
-        );
-      }
-    }
-  }
+
 
   FirebaseDocument() async {
     var document = await db.collection('Person').doc(user.uid).get();
     Map<String, dynamic>? value = document.data();
-    if (mounted) {
+    if (mounted && value != null) {
       setState(() {
-        name = value!['name'];
+        name = value['name'];
         surname = value['surname'];
-      });
-    }
-  }
-
-  handleTakePhoto(ImageSource source, {required BuildContext context}) async {
-        () => Navigator.pop(context);
-    try {
-      final pickedFile = await _pickerImage.pickImage(source: source);
-      setState(() {
-        profileImage = pickedFile!;
-        print("dosyaya geldim: $profileImage");
-        if (profileImage != null) {}
-      });
-      print('aaa');
-    } catch (e) {
-      setState(() {
-        _pickImage = e;
-        print("Image Error: $_pickImage");
-      });
-    }
-  }
-
-  handleChooseFromGallery(ImageSource source,
-      {required BuildContext context}) async {
-    Navigator.pop(context);
-    try {
-      final pickedFile = await _pickerImage.pickImage(source: source);
-      setState(() {
-        profileImage = pickedFile!;
-        print("dosyaya geldim: $profileImage");
-        if (profileImage != null) {}
-      });
-      print('aaa');
-    } catch (e) {
-      setState(() {
-        _pickImage = e;
-        print("Image Error: $_pickImage");
       });
     }
   }
@@ -173,39 +110,6 @@ class _MissingPostPageState extends State<MissingPostPage> {
         elevation: 0,
       ));
       Navigator.pop(context);
-    });
-  }
-
-  void imagePicker() async {
-    Future.delayed(Duration.zero, () {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return SimpleDialog(
-            title: Text(
-                LocaleKeys.make_your_voice_heard_debris_page_pick_image.tr()),
-            children: [
-              SimpleDialogOption(
-                onPressed: () =>
-                    handleTakePhoto(ImageSource.camera, context: context),
-                child: Text(
-                    LocaleKeys.make_your_voice_heard_debris_page_camera.tr()),
-              ),
-              SimpleDialogOption(
-                onPressed: () => handleChooseFromGallery(ImageSource.gallery,
-                    context: context),
-                child: Text(
-                    LocaleKeys.make_your_voice_heard_debris_page_gallery.tr()),
-              ),
-              SimpleDialogOption(
-                child: Text(
-                    LocaleKeys.make_your_voice_heard_debris_page_cancel.tr()),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          );
-        },
-      );
     });
   }
 
@@ -243,13 +147,11 @@ class _MissingPostPageState extends State<MissingPostPage> {
             const SizedBox(
               height: 10.0,
             ),
-            imagePlace(),
+
             if (selectedPlace != null) ...[
               Text(selectedPlace!.formattedAddress!),
               Text("(lat: ${selectedPlace!.geometry!.location.lat}, lng: ${selectedPlace!.geometry!.location.lng})"),
             ],
-            buildButton(imagePicker,
-                LocaleKeys.make_your_voice_heard_debris_page_pick_image.tr()),
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {

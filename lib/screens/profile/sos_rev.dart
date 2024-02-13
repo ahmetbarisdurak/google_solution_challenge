@@ -33,16 +33,19 @@ class _SosRevState extends State<SosRev> {
   FirebaseDocument() async {
     var document = await db.collection('Person').doc(user.uid).get();
     Map<String, dynamic>? value = document.data();
-    setState(() {
-      name = value!['name'];
-      surname = value['surname'];
-      print(name);
-    });
+    if(mounted) {
+      setState(() {
+        name = value!['name'];
+        surname = value['surname'];
+        print("Printing name");
+        print(name);
+      });
+    }
   }  
 
   void SOSsent() {
     showDialog(
-      context: context,
+      context: context, // Burada hata çıkıyor hala.
       builder: (context) {
         return AlertDialog(
           backgroundColor: const Color.fromARGB(148, 233, 125, 71),
@@ -56,7 +59,7 @@ class _SosRevState extends State<SosRev> {
     );
   }
 
-  void warnmes(BuildContext context,latitude,longitude) {
+  void WarnMessage(BuildContext context,latitude,longitude) {
     FirebaseDocument();
     // set up the buttons
     Widget cancelButton = TextButton(
@@ -68,8 +71,9 @@ class _SosRevState extends State<SosRev> {
     Widget continueButton = TextButton(
       child: Text(LocaleKeys.Profile_sosMobile_Continue.tr(), style: const TextStyle(color: Colors.white, fontSize: 24),),
       onPressed:  () {
-        Navigator.of(context, rootNavigator: true).pop();   
-        SendSosMessage(latitude,longitude);
+        Navigator.of(context, rootNavigator: true).pop();
+        print("key is pressed so sending sos message");
+        SendSosMessage(latitude,longitude); // Send SOS message if key pressed
         Navigator.pop(context);
         
       },
@@ -104,9 +108,13 @@ class _SosRevState extends State<SosRev> {
 
   Future<void> SendSosMessage(latitude,longitude) async {
     FirebaseDocument();
-  
+    print("Printing SOS message");
+    print(latitude);
+    print(longitude);
+
+
     _reportService
-        .addStatus("Help Me Please!!", 
+        .addStatus("Please help me!",
                   ("$name $surname"),
                   GeoPoint(latitude, longitude),
         ).then((value) {
@@ -116,20 +124,26 @@ class _SosRevState extends State<SosRev> {
   }
 
   Future<Position> _getCurrentLocation() async{
+
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
     if(!serviceEnabled){
       return Future.error(LocaleKeys.Profile_sosMobile_locationDisable.tr());
     }
+
     LocationPermission permission =await Geolocator.checkPermission();
+
     if(permission==LocationPermission.denied){
       permission= await Geolocator.requestPermission();
       if (permission==LocationPermission.denied){
         return Future.error(LocaleKeys.Profile_sosMobile_locationDisable.tr());
       }
     }
+
     if(permission==LocationPermission.deniedForever){
       return Future.error(LocaleKeys.Profile_sosMobile_locationDisablePer.tr());
     }
+
     return await Geolocator.getCurrentPosition();
   }
 
@@ -240,23 +254,26 @@ class _SosRevState extends State<SosRev> {
                                         ),
                                       ],
                                     ),
-                                    child: 
+                                    child:
                                     GestureDetector(
                                       onTap: () {
-                                        _getCurrentLocation().then((value) {
-                                          setState(() {
-                                            _latitude=value.latitude;
-                                            _longitude=value.longitude;
-                                            print(_latitude);
-                                            //last_latLng=LatLng(_latitude, _longitude);
-                                          });
-                                        },);
-                                        //print(last_latLng);
-                                        FirebaseDocument();
-                                        warnmes(context,_latitude,_longitude);
-                                      },
+                                        print("Getting current location");
+                                        _getCurrentLocation().then((position) {
+                                          if (mounted) {
+                                            print("mounted sıkıntı yok");
+                                            setState(() {
+                                              _latitude = position.latitude;
+                                              _longitude = position.longitude;
+                                              print("latitude is printing");
+                                              print(_latitude);
+                                            });
+                                            FirebaseDocument();
+                                            WarnMessage(context, _latitude, _longitude);
+                                          }
+                                        });
+                                      }
                                     ),
-                                        ),
+                            ),
                           ),),
                 ),),
               const SizedBox(

@@ -55,15 +55,15 @@ class _NavBarSOSState extends State<NavBarSOS> {
                 ),
                 GButton(
                   icon: Icons.home,
-                  text: "MYVH",
+                  text: "Home",
                 ),
                 GButton(
-                  icon: Icons.handshake_outlined ,
-                  text: "Volunteer",
+                  icon: Icons.camera_alt ,
+                  text: "Camera",
                 ),
                 GButton(
-                  icon: Icons.hotel_class_outlined,
-                  text: "Donate",
+                  icon: Icons.info,
+                  text: "Information",
                 ),
               ],
             ),

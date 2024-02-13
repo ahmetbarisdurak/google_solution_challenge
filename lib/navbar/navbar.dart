@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
-//import 'package:google_solution_challenge/screens/home/donation/donation_main.dart';
 import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
 import 'package:google_solution_challenge/screens/home/maps/map_custom.dart';
 //import 'package:google_solution_challenge/screens/home/volunteer/volunteer.dart';
@@ -34,6 +33,7 @@ class _NavBarState extends State<NavBar> {
         .collection('EarthquakeLocation')
         .doc("mpQ3qaUnmo54pPKPu30W")
         .get();
+
     Map<String, dynamic>? value = document.data();
     if (mounted && value != null) {
       setState(() {

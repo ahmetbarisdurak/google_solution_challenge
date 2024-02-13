@@ -13,6 +13,8 @@ import 'package:url_launcher/url_launcher.dart';
   //State<CameraScreen> createState() => _CameraScreenState();
 //}
 
+// OMER buraya ekleme yapacak.
+
 class _CameraScreenState {
 
 }

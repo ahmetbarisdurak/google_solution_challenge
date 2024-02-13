@@ -1049,10 +1049,10 @@ packages:
     dependency: transitive
     description:
       name: permission_handler_android
-      sha256: a5ebaa420cee8fd880ef10dedd42c6b3f493e7dbe27d7e0a7e1798669373082a
+      sha256: "1acac6bae58144b442f11e66621c062aead9c99841093c38f5bcdcc24c1c3474"
       url: "https://pub.dev"
     source: hosted
-    version: "12.0.4"
+    version: "12.0.5"
   permission_handler_apple:
     dependency: transitive
     description:
@@ -1289,6 +1289,14 @@ packages:
       relative: true
     source: path
     version: "1.1.2"
+  toast:
+    dependency: "direct main"
+    description:
+      name: toast
+      sha256: "12433091e3e5a25b3a25f670126e42547c9ade135de30ad9ace45d1ddccd57c9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   tuple:
     dependency: transitive
     description:

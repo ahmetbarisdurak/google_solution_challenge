@@ -2,7 +2,6 @@ import 'package:google_solution_challenge/models/blog_details_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import "package:flutter/material.dart";
 import 'package:google_solution_challenge/models/data.dart';
-
 import '../../translations/locale_keys.g.dart';
 
 class ExploreScreen extends StatefulWidget {
