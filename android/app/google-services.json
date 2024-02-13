@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202550676122",
+    "project_id": "earthquakeproject-a60c4",
+    "storage_bucket": "earthquakeproject-a60c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202550676122:android:0625080b04df80eb58ed23",
+        "android_client_info": {
+          "package_name": "com.example.google_solution_challenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqW7KaUnwhe-puUzxMInwiCFqj_fvvgUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
