@@ -8,44 +8,74 @@ class IntroScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: EdgeInsets.only(top: height * 0.12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Image(image: AssetImage('assets/images/hands.png')),
-            const SizedBox(height: 10.0),
-             Text(
-              LocaleKeys.Intro1_Help.tr(),
-              style: const TextStyle(
-                  fontFamily: "Pacifico",
-                  fontSize: 30.0,
-                  color: Color(0xffe97d47),
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10.0),
-            Text(
-              LocaleKeys.Intro1_motivation.tr(),
-              style: const TextStyle(
-                fontFamily: "Source Sans Pro",
-                fontSize: 18.0,
-                letterSpacing: 2.5,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.yellow.withOpacity(0.8), Colors.orange.withOpacity(0.5)],
               ),
             ),
-            SizedBox(
-              height: 30.0,
-              width: 200.0,
-              child: Divider(
-                color: Colors.grey.shade200,
-                thickness: 1,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: height * 0.12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Image(image: AssetImage('assets/images/hands.png')),
+                    const SizedBox(height: 20.0),
+                    Text(
+                      LocaleKeys.openingCards1Title.tr(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: "Pacifico",
+                        fontSize: 28.0,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Text(
+                      LocaleKeys.openingCards1.tr(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: "Roboto",
+                        fontSize: 16.0,
+                        letterSpacing: 1.5,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 30.0),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add button functionality here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }

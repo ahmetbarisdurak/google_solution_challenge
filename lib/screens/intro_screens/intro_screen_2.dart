@@ -18,7 +18,7 @@ class IntroScreen2 extends StatelessWidget {
             const Image(image: AssetImage('assets/images/share.png')),
             const SizedBox(height: 10.0),
             Text(
-              LocaleKeys.Intro2_Volunteer.tr(),
+              LocaleKeys.openingCards2Title.tr(),
               style: const TextStyle(
                   fontFamily: "Pacifico",
                   fontSize: 30.0,
@@ -27,7 +27,7 @@ class IntroScreen2 extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              LocaleKeys.Intro2_motivation.tr(),
+              LocaleKeys.openingCards2.tr(),
               style: const TextStyle(
                 fontFamily: "Source Sans Pro",
                 fontSize: 18.0,

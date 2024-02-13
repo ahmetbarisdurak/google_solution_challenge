@@ -18,7 +18,7 @@ class IntroScreen4 extends StatelessWidget {
             const Image(image: AssetImage('assets/images/word_orange.png')),
             const SizedBox(height: 10.0),
             Text(
-              LocaleKeys.Intro4_Map.tr(),
+              LocaleKeys.openingCards4Title.tr(),
               style: const TextStyle(
                   fontFamily: "Pacifico",
                   fontSize: 30.0,
@@ -27,7 +27,7 @@ class IntroScreen4 extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              LocaleKeys.Intro4_motivation.tr(),
+              LocaleKeys.openingCards4.tr(),
               style: const TextStyle(
                 fontFamily: "Source Sans Pro",
                 fontSize: 18.0,
