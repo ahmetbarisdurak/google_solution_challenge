@@ -200,7 +200,7 @@ static const Map<String,dynamic> en = {
   "volunteer_motivation": "'“Alone we can do so little; together we can do so much.”'",
   "volunteer_whcity": "In which city do you live?",
   "opening_cards_1_title": "Help",
-  "opening_cards_1": "To reach people who want help.",
+  "opening_cards_1": "You can help people in need\n by using the markers on the map",
   "opening_cards_2_title": "AR",
   "opening_cards_2": "Use AR technology to identify \n the safe spots in your room.",
   "opening_cards_3": "You can donate money, \n blood or needs.",
