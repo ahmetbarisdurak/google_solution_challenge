@@ -36,8 +36,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
 
-  Locale? _locale;
-
   MyApp({super.key});
 
   @override

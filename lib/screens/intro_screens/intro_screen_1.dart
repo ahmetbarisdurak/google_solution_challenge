@@ -2,9 +2,14 @@ import 'package:google_solution_challenge/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class IntroScreen1 extends StatelessWidget {
+class IntroScreen1 extends StatefulWidget {
   const IntroScreen1({super.key});
 
+  @override
+  State<IntroScreen1> createState() => _IntroScreen1State();
+}
+
+class _IntroScreen1State extends State<IntroScreen1> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
