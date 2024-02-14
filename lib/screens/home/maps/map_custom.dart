@@ -140,8 +140,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
   }
 
   markStatus() {
-    print("Populating Status");
-
     FirebaseFirestore.instance.collection("Status").get().then((docs) {
       if (docs.docs.isNotEmpty) {
         for (int i = 0; i < docs.docs.length; ++i) {
@@ -152,8 +150,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
   }
 
   markSOS() {
-    print("Populating SOS");
-
     FirebaseFirestore.instance.collection('SOS').get().then((docs) {
       if (docs.docs.isNotEmpty) {
 
@@ -166,17 +162,13 @@ class _MapUIStatecustom extends State<MapUIcustom> {
 
   loadData(latLang, i, color) {
 
-    BitmapDescriptor markerColor = BitmapDescriptor.defaultMarker; // Varsayılan renk
+    BitmapDescriptor markerColor = BitmapDescriptor.defaultMarker; // Default color
 
     if (color == "yellow") {
       markerColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow);
     }
     else if( color == "red") {
       markerColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
-
-
-      print(latLang()['status']);
-      print(latLang()['location']);
     }
 
 
@@ -188,57 +180,67 @@ class _MapUIStatecustom extends State<MapUIcustom> {
         onTap: () {
           _customInfoWindowController.addInfoWindow!(
             Container(
-              height: 300,
+              padding: EdgeInsets.all(8),
+              height: 180, // Yüksekliği resim olmadığı için azalttık
               width: 200,
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 300,
-                    height: 100,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        color: Color.fromARGB(255, 255, 197, 146)),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(top: 10, left: 10, right: 10),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 200,
-                          child: Text(
-                            latLang()['status'], // normalde ismi address
-                            maxLines: 2,
-                            overflow: TextOverflow.fade,
-                            softWrap: false,
-                          ),
-                        ),
-                        const Spacer(),
-                        const Text("!!!")
-                      ],
+                    child: Text(
+                      "Coordinates: ${latLang()['location'].latitude}, ${latLang()['location'].longitude}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  Padding(
-                      padding:
-                      const EdgeInsets.only(top: 10, left: 10, right: 10),
-                      child: Text(
-                        latLang()['status'],
-                        maxLines: 2,
-                      ))
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Status",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            "${latLang()['status']}",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            LatLng(latLang()['location'].latitude,
-                latLang()['location'].longitude),
+            LatLng(latLang()['location'].latitude, latLang()['location'].longitude),
           );
         },
       ),
@@ -251,7 +253,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
   Widget build(BuildContext context) {
 
     markStatus();
-
     i_mar = _markers.length;
     markSOS();
 

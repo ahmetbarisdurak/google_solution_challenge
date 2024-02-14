@@ -4,13 +4,13 @@ import "package:flutter/material.dart";
 import 'package:google_solution_challenge/models/data.dart';
 import '../../translations/locale_keys.g.dart';
 
-class ExploreScreen extends StatefulWidget {
-  const ExploreScreen({super.key});
+class InformationScreen extends StatefulWidget {
+  const InformationScreen({super.key});
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
+  State<InformationScreen> createState() => _InformationScreenState();
 }
 
-class _ExploreScreenState extends State<ExploreScreen> {
+class _InformationScreenState extends State<InformationScreen> {
   final data = dataList;
 
   @override

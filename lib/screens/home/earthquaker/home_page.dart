@@ -17,27 +17,45 @@ class EarthquakerPage extends StatefulWidget {
 
 class _EarthquakerPageState extends State<EarthquakerPage> {
   final ReportService _reportService = ReportService();
+
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not launch $url'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
+
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.person), // Profile girmek için olan buton
-          onPressed: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen())),
-          color: const Color(0xffe97d47),
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen())),
+          color: Colors.blueGrey[900],
+
         ),
         backgroundColor: Colors.transparent,
         title: Center( // Programın isminin yazdığı kısım
           child: Text(
             LocaleKeys.earthquaker_title.tr(),
-            style: GoogleFonts.prozaLibre(
-              color: const Color(0xffe97d47),
-              fontSize: 20,
+            style: GoogleFonts.lobster(
+              color: Colors.red,
+              fontSize: 28,
               fontWeight: FontWeight.w600,
               height: 1.355,
+              shadows: [
+                const Shadow(
+                  offset: Offset(2.0, 2.0),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(150, 0, 0, 0),
+                ),
+              ],
             ),
           ),
         ),
@@ -45,8 +63,8 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
           IconButton( // Explore butonu, deprem hakkında bilgilendirmeler veriyor.
             icon: const Icon(Icons.search_outlined),
             onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ExploreScreen())),
-            color: const Color(0xffe97d47),
+                MaterialPageRoute(builder: (context) => const InformationScreen())),
+            color: Colors.blueGrey,
           ),
         ],
       ),
@@ -59,25 +77,28 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
           Padding(
             padding:
             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-            child: Text(
-              LocaleKeys.make_your_voice_heard_reports.tr(), // Rapor isimleri
-              style: const TextStyle(
+
+            child: Center(
+              child: Text(
+                LocaleKeys.make_your_voice_heard_reports.tr(), // Rapor isimleri
+                style: const TextStyle(
                   fontFamily: "Raleway",
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.0),
+                  fontSize: 24.0),
+              ),
             ),
           ),
+
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Divider(),
           ),
+
           StreamBuilder(
             stream: _reportService.getStatus(),
-
-
             builder: (context, snapshot) {
 
-              if(!snapshot.hasData) {
+              if (!snapshot.hasData) { // Herhangi bir veri yoksa sadece circular progress olsun.
                 return const Center( // CircularProgressIndicator'ı merkeze al
                   child: SizedBox(
                     width: 40, // Yüklenme göstergesinin genişliği
@@ -101,83 +122,88 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
                     DocumentSnapshot myReport = snapshot.data!.docs[index];
 
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(25),
-                          ),
+                          borderRadius: const BorderRadius.all(Radius.circular(25)),
                         ),
                         margin: const EdgeInsets.fromLTRB(3, 0, 3, 9),
                         width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                        child: Column(
+                          children: [
+                            Container( // Kullanıcı adı ve oluşturulma tarihi için yeni box
+                              decoration: BoxDecoration(
+                                color: Colors.blueGrey[100],
+                                // Bu box için farklı bir arka plan rengi
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                ),
+                              ),
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
                                 children: [
                                   Row(
                                     children: [
                                       Image.asset(
-                                          "assets/images/profile_black.png"),
+                                          "assets/images/profile_black.png"), // Bu asset değiştirilebilir.
                                       const SizedBox(width: 10),
                                       Text(
                                         myReport['user'],
                                         style: const TextStyle(
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ],
                                   ),
                                   Text(
-                                    myReport['createdAt']
-                                        .toDate()
-                                        .toString()
-                                        .substring(0, 10),
+                                    DateFormat('yyyy-MM-dd').format(
+                                        myReport['createdAt'].toDate()),
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12),
-                                  )
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ],
                               ),
-                              const SizedBox(height: 20),
-                              Text(
-                                myReport['status'],
-                                style: GoogleFonts.nunitoSans(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.3625,
-                                  color: const Color(0xff000000),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
                                 children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.share),
+                                  const SizedBox(height: 30),
+                                  Text(
+                                    myReport['status'],
+                                    style: GoogleFonts.nunitoSans(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.3625,
+                                      color: const Color(0xff000000),
+                                    ),
                                   ),
-                                  const SizedBox(width: 10),
-                                  IconButton(
-                                    onPressed: () async {
-                                      GeoPoint point =
-                                      myReport['location'];
-                                      final map =
-                                          'https://www.google.com/maps/search/?api=1&query=${point.latitude},${point.longitude}';
-                                      if (await (canLaunch(map))) {
-                                        await launch(map);
-                                      }
-                                    },
-                                    icon: const Icon(Icons.location_on),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () async {
+                                          GeoPoint point = myReport['location'];
+                                          final Uri mapUri = Uri.parse(
+                                              'https://www.google.com/maps/search/?api=1&query=${point
+                                                  .latitude},${point
+                                                  .longitude}');
+                                          await _launchUrl(mapUri);
+                                        },
+                                        icon: const Icon(Icons.location_on),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -186,19 +212,20 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
               }
             },
           ),
-          const SizedBox(
-            height: 30.0,
-          ),
-        ],
+        ]
       ),
       floatingActionButton: FloatingActionButton(
         // Go to CartPage
-        heroTag: const Text("btn1"),
-        backgroundColor: Colors.black,
+        heroTag: "btn1",
+        backgroundColor: Colors.grey[900],
         onPressed: () {
           showOptions(context);
         },
         child: const Icon(Icons.add),
+        elevation: 10.0, // Butona gölge ekler
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0)), // Daha yuvarlak köşeler
+        ),
       ),
     );
   }

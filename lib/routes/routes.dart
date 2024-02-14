@@ -9,7 +9,7 @@ class AppPage {
     GetPage(name: navbar, page: () => const NavBar()),
     GetPage(name: home, page: () => const HomeScreen()),
     GetPage(name: profile, page: () => const ProfileScreen()),
-    GetPage(name: explore, page: () => const ExploreScreen())
+    GetPage(name: explore, page: () => const InformationScreen())
   ];
 
   static String navbar = "/";
