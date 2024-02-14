@@ -143,6 +143,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
     FirebaseFirestore.instance.collection("Status").get().then((docs) {
       if (docs.docs.isNotEmpty) {
         for (int i = 0; i < docs.docs.length; ++i) {
+          print("Status: i ${i}");
           loadData(docs.docs[i].data, i, "yellow"); // Since it is status, it should be yellow.
         }
       }
@@ -154,6 +155,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
       if (docs.docs.isNotEmpty) {
 
         for (int i = 0; i < docs.docs.length; ++i) {
+          print(" SOS: i ${i}");
           loadData(docs.docs[i].data, i + i_mar, "red"); // Since it is a SOS, it should be red.
         }
       }
@@ -171,7 +173,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
       markerColor = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
     }
 
-
     _markers.add(
       Marker(
         markerId: MarkerId("$i"),
@@ -181,7 +182,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
           _customInfoWindowController.addInfoWindow!(
             Container(
               padding: EdgeInsets.all(8),
-              height: 180, // Yüksekliği resim olmadığı için azalttık
+              height: 180,
               width: 200,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -220,7 +221,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Status",
+                            "Status:",
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
