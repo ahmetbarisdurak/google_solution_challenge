@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
 import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
@@ -28,7 +27,7 @@ class _NavBarState extends State<NavBar> {
   late LatLng _currentPostion = const LatLng(38.9637, 35.2433);
   late GeoPoint _EarthPostion = const GeoPoint(36.2025833, 36.1604033);
 
-  FirebaseDocument() async {
+  FirebaseDocument() async {  // Yakında bir deprem olduysa bir pop up olarak gösterebiliriz hemen.
     var document = await db
         .collection('EarthquakeLocation')
         .doc("mpQ3qaUnmo54pPKPu30W")
@@ -79,7 +78,7 @@ class _NavBarState extends State<NavBar> {
             index: controller.tabIndex,
             children: const [
               EarthquakerPage(),
-              SosRev(),
+              SOSButton(),
               // CameraPage(), kamera buraya gelecek
               MapUIcustom(),
               InformationScreen(),

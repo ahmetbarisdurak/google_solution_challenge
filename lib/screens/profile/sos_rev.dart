@@ -6,20 +6,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class SosRev extends StatefulWidget {
-  const SosRev({super.key});
+class SOSButton extends StatefulWidget {
+  const SOSButton({super.key});
 
   @override
-  State<SosRev> createState() => _SosRevState();
+  State<SOSButton> createState() => _SOSButtonState();
 }
 
 
-class _SosRevState extends State<SosRev> {
+class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMixin {
 
   static double? _latitude;
   static double? _longitude;
-  static LatLng? last_latLng;
   final SosMobileService _reportService = SosMobileService();
   var currentLocation;
   late bool serviceEnabled;
@@ -29,6 +29,18 @@ class _SosRevState extends State<SosRev> {
   String name = "";
   String surname = "";
 
+  AnimationController? _animationController;
+  Animation<double>? _buttonScale;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
+    _buttonScale = Tween<double>(begin: 1.0, end: 0.9).animate(_animationController!);
+  }
 
   FirebaseDocument() async {
     var document = await db.collection('Person').doc(user.uid).get();
@@ -105,13 +117,8 @@ class _SosRevState extends State<SosRev> {
 
   }
 
-
   Future<void> SendSosMessage(latitude,longitude) async {
     FirebaseDocument();
-    print("Printing SOS message");
-    print(latitude);
-    print(longitude);
-
 
     _reportService
         .addStatus("Please help me!",
@@ -148,17 +155,63 @@ class _SosRevState extends State<SosRev> {
   }
 
   @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
+  }
+
+  void _onTapDown(TapDownDetails details) {
+    _animationController?.forward();
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    _animationController?.reverse();
+  }
+
+  Widget _buildSOSButton() {
+    return GestureDetector(
+      onTapDown: _onTapDown,
+      onTapUp: _onTapUp,
+      onTap: () {
+        // Burada mevcut konumunuzu alıp SOS mesajı gönderme işlemini tetikleyin
+        print("SOS mesajı gönderiliyor...");
+        _getCurrentLocation().then((position) {
+          if (mounted) {
+            setState(() {
+              _latitude = position.latitude;
+              _longitude = position.longitude;
+            });
+            FirebaseDocument();
+            WarnMessage(context, _latitude, _longitude);
+          }
+        });
+      },
+      child: ScaleTransition(
+        scale: _buttonScale!,
+        child: CircleAvatar(
+          radius: 80,
+          backgroundColor: Colors.red,
+          child: Icon(Icons.warning, size: 80, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Text(LocaleKeys.Profile_sosMobile_sosButton.tr(),style: const TextStyle(color: Color(0xffe97d47)),),
+          elevation: 10,
+          title: Text(
+            LocaleKeys.Profile_sosMobile_sosButton.tr(),
+            style: TextStyle(color: Colors.black87),
+          ),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
               Icons.arrow_back,
-              color: Color(0xffe97d47),
+              color: Colors.black87,
             ),
           ),
           actions: [
@@ -167,7 +220,7 @@ class _SosRevState extends State<SosRev> {
               child: GestureDetector(
                 onTap: () {
                   showDialog(
-                    context: context, 
+                    context: context,
                     builder: (context)=> SimpleDialog(
                       title: Text(LocaleKeys.Profile_sosMobile_sosButton.tr()),
                       contentPadding: const EdgeInsets.all(20.0),
@@ -176,8 +229,11 @@ class _SosRevState extends State<SosRev> {
                         TextButton(
                           onPressed:() {
                             Navigator.of(context).pop();
-                          }, 
-                          child: Text(LocaleKeys.Profile_sosMobile_Close.tr(), style: const TextStyle(color:Color(0xffe97d47) ),),
+                          },
+                          child: Text(
+                            LocaleKeys.Profile_sosMobile_Close.tr(),
+                            style: TextStyle(color: Colors.red),
+                          ),
                         )
                       ],
 
@@ -186,13 +242,14 @@ class _SosRevState extends State<SosRev> {
                 },
                 child: const Icon(
                   Icons.info_outline,
-                  color: Color(0xffe97d47),
+                  color: Colors.black87,
                 ),
               ),
             )
           ],
       ),
-    body: SingleChildScrollView(
+
+      body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
@@ -200,92 +257,43 @@ class _SosRevState extends State<SosRev> {
                 height: 30,
               ),
               Align(
-                 alignment: Alignment.topCenter,
-                    child: Text(LocaleKeys.Profile_sosMobile_SOS.tr(),style: const TextStyle(fontSize: 96, fontWeight: FontWeight.bold,fontFamily:'Nunito Sans' ,color: Color.fromARGB(255, 217, 0, 0) ),
+                alignment: Alignment.topCenter,
+                child: Text(
+                  LocaleKeys.Profile_sosMobile_SOS.tr(),
+                  style: GoogleFonts.lato(
+                      fontSize: 96,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 217, 0, 0)
                   ),
-                    
-                 
+                ),
               ),
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width/2,
-                height: MediaQuery.of(context).size.width/2,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(60*MediaQuery.of(context).size.width),
-                  color: const Color.fromARGB(255, 255, 171, 171),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromARGB(62, 0, 0, 0),
-                      offset: Offset(4, 4),
-                      blurRadius: 2,
-                    ),
+              Center(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 30),
+                    _buildSOSButton(),
+                    const SizedBox(height: 30),
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(60*MediaQuery.of(context).size.width*4/5),
-                            color: const Color.fromARGB(255, 251, 100, 100),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(62, 0, 0, 0),
-                                offset: Offset(4, 4),
-                                blurRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(60*MediaQuery.of(context).size.width),
-                                      color: const Color.fromARGB(255, 217, 0, 0),
-                                      image: const DecorationImage(
-                                        image: AssetImage("assets/images/ring_white.png"),
-                                      ),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Color.fromARGB(62, 0, 0, 0),
-                                          offset: Offset(4, 4),
-                                          blurRadius: 2,
-                                        ),
-                                      ],
-                                    ),
-                                    child:
-                                    GestureDetector(
-                                      onTap: () {
-                                        print("Getting current location");
-                                        _getCurrentLocation().then((position) {
-                                          if (mounted) {
-                                            print("mounted sıkıntı yok");
-                                            setState(() {
-                                              _latitude = position.latitude;
-                                              _longitude = position.longitude;
-                                              print("latitude is printing");
-                                              print(_latitude);
-                                            });
-                                            FirebaseDocument();
-                                            WarnMessage(context, _latitude, _longitude);
-                                          }
-                                        });
-                                      }
-                                    ),
-                            ),
-                          ),),
-                ),),
+              ),
               const SizedBox(
                 height: 30,
               ),
               Align(
-                 alignment: Alignment.bottomCenter,
-                    child: Text(LocaleKeys.Profile_sosMobile_emergency.tr(),textAlign: TextAlign.center, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold,fontFamily:'Nunito Sans' ),
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  LocaleKeys.Profile_sosMobile_emergency.tr(),
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.openSans(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 0, 0, 0)
                   ),
-                    
-                 
-              )
+                ),
+              ),
             ],
           ),
         ),

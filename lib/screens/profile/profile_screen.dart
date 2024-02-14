@@ -77,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void sos_mobile() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const SosRev())); //SosMobile
+        context, MaterialPageRoute(builder: (context) => const SOSButton())); //SosMobile
   }
 
   @override
