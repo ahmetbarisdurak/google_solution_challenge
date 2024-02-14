@@ -1,3 +1,5 @@
+import 'package:google_solution_challenge/screens/intro_screens/intro_screen_1.dart';
+import 'package:google_solution_challenge/screens/intro_screens/intro_screen_2.dart';
 import 'package:google_solution_challenge/screens/login/auth_login.dart';
 import 'package:google_solution_challenge/screens/login/service/login_service.dart';
 import 'package:google_solution_challenge/translations/codegen_loader.g.dart';
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
                 return const AuthPage();
                 //return const Intro_Wear();
               } else {
-                return const AuthPage();
+                return const IntroScreen1();
               }
             },
           ),
