@@ -75,7 +75,7 @@ class _AuthPageState extends State<AuthPage> {
             return GetMaterialApp( // Kullanıcıyı ana ekrana yönlendirir.
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSwatch()
-                    .copyWith(secondary: const Color(0xffff7800)),
+                    .copyWith(secondary: Colors.blueGrey),
               ),
               debugShowCheckedModeBanner: false,
               initialRoute: AppPage.getNavBar(), // NavBar() kısmına gönderiyor.

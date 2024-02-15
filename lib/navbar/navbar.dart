@@ -112,9 +112,9 @@ class _NavBarState extends State<NavBar> {
             children: const [
               EarthquakerPage(),
               SOSButton(),
+              // ARPage(),
               // CameraPage(), kamera buraya gelecek
               MapUIcustom(),
-              InformationScreen(),
             ],
           ),
           bottomNavigationBar: Container(
@@ -147,16 +147,16 @@ class _NavBarState extends State<NavBar> {
                     text: "SOS",
                   ),
                   GButton(
+                    icon: Icons.vrpano,
+                    text: "AR",
+                  ),
+                  GButton(
                     icon: Icons.camera_alt,
                     text: "Camera",
                   ),
                   GButton(
                     icon: Icons.map,
                     text: "Maps",
-                  ),
-                  GButton(
-                    icon: Icons.info,
-                    text: "Information",
                   ),
                 ],
               ),

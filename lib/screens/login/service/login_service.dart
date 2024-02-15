@@ -46,7 +46,7 @@ class FirebaseUserAuthentication {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color(0xffe97d47),
+          backgroundColor: Colors.blueGrey,
           title: Text(
             LocaleKeys.Login_service_incrtmail.tr(),
             style: const TextStyle(color: Colors.white),
@@ -61,7 +61,7 @@ class FirebaseUserAuthentication {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color(0xffe97d47),
+          backgroundColor: Colors.blueGrey,
           title: Text(
             LocaleKeys.Login_service_incrtmail.tr(),
             style: const TextStyle(color: Colors.white),
@@ -76,7 +76,7 @@ class FirebaseUserAuthentication {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color(0xffe97d47),
+          backgroundColor: Colors.blueGrey,
           title: Text(
             LocaleKeys.Login_service_incrtboth.tr(),
             style: const TextStyle(color: Colors.white),
