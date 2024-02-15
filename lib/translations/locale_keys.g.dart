@@ -78,7 +78,7 @@ abstract class  LocaleKeys {
   static const Register_cancel = 'Register_cancel';
   static const Register_RegisterPage = 'Register_RegisterPage';
   static const Register_Name = 'Register_Name';
-  static const Register_Sname = 'Register_Sname';
+  static const Register_Surname = 'Register_Surname';
   static const Register_email = 'Register_email';
   static const Register_description = 'Register_description';
   static const Register_Password = 'Register_Password';

@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color(0xffe97d47),
+          backgroundColor: Colors.blueGrey,
           title: Text(
             LocaleKeys.Login_Page_ring.tr(),
             style: const TextStyle(color: Colors.white),
@@ -56,7 +56,7 @@ class _MainPageState extends State<MainPage> {
                 width: double.infinity,
                 height: height * 0.32,
                 decoration: const BoxDecoration(
-                  color: Color(0xffe97d47),
+                  color: Colors.blueGrey,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
@@ -110,10 +110,11 @@ class _MainPageState extends State<MainPage> {
               "Earthquaker",
               style: TextStyle(
                   fontFamily: "Pacifico",
-                  fontSize: 30.0,
-                  color: Color(0xffe97d47),
+                  fontSize: 46.0,
+                  color: Colors.red,
                   fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 15.0),
             Text(
               LocaleKeys.Login_Page_loginPage.tr(),
               style: const TextStyle(
@@ -121,7 +122,7 @@ class _MainPageState extends State<MainPage> {
                 fontSize: 15.0,
                 letterSpacing: 2.5,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 255, 174, 174),
+                color: Colors.blueGrey
               ),
             ),
             SizedBox(
@@ -152,7 +153,7 @@ class _MainPageState extends State<MainPage> {
                             builder: (context) => const ForgotPasswordPage())),
                     child: Text(
                       LocaleKeys.Login_Page_forget_password.tr(),
-                      style: const TextStyle(color: Color(0xffe97d47)),
+                      style: const TextStyle(color: Colors.blueGrey),
                     ),
                   ),
                 ],
@@ -186,7 +187,7 @@ class _MainPageState extends State<MainPage> {
                     child: Text(
                       LocaleKeys.Login_Page_or.tr(),
                       style: const TextStyle(
-                        color: Color(0xffe97d47),
+                        color: Colors.blueGrey,
                       ),
                     ),
                   ),
@@ -239,7 +240,7 @@ class _MainPageState extends State<MainPage> {
                   child: Text(
                     LocaleKeys.Login_Page_signUp.tr(),
                     style: const TextStyle(
-                      color: Color(0xffe97d47),
+                      color: Colors.blueGrey,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -268,7 +269,7 @@ class _MainPageState extends State<MainPage> {
           width: 150.0,
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-              color: const Color(0xffe97d47),
+              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(

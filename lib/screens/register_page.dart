@@ -34,8 +34,6 @@ class _RegisterPageState extends State<RegisterPage> {
     var user = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
 
-    print("User created");
-    print(user);
 
     await _firestore.collection("Person").doc(user.user?.uid).set({
       'name': name,
@@ -107,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Color(0xffe97d47),
+            color: Colors.blueGrey,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -122,11 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Text(
-                    "Earthquaker?",
+                    "Earthquaker",
                     style: TextStyle(
                         fontFamily: "Pacifico",
                         fontSize: 30.0,
-                        color: Color(0xffe97d47),
+                        color: Colors.red,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -136,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 15.0,
                       letterSpacing: 2.5,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 174, 174),
+                      color: Colors.blueGrey,
                     ),
                   ),
                   SizedBox(
@@ -147,10 +145,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       thickness: 1,
                     ),
                   ),
-                  Text(LocaleKeys.Register_pickImage.tr()),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -160,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: buildTextField(nameController, LocaleKeys.Register_Name.tr(), false)),
                       Expanded(
                           child: buildTextField(
-                              surnameController, LocaleKeys.Register_Sname.tr(), false)),
+                              surnameController, LocaleKeys.Register_Surname.tr(), false)),
                     ],
                   ),
                   const SizedBox(
@@ -171,7 +165,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20.0,
                   ),
                   buildTextField(descriptionController,
-                      LocaleKeys.Register_description.tr(), false),
+                      LocaleKeys.Register_description.tr(), false), // status
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -203,7 +197,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Text(
                             LocaleKeys.Register_or.tr(),
                             style: const TextStyle(
-                              color: Color(0xffe97d47),
+                              color: Colors.blueGrey,
                             ),
                           ),
                         ),
@@ -256,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           LocaleKeys.Register_logIn.tr(),
                           style: const TextStyle(
-                            color: Color(0xffe97d47),
+                            color: Colors.blueGrey,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -282,10 +276,10 @@ class _RegisterPageState extends State<RegisterPage> {
         behavior: HitTestBehavior.translucent,
         onTap: onTap,
         child: Container(
-          width: 150.0,
+          width: 100.0,
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-              color: const Color(0xffe97d47),
+              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(
