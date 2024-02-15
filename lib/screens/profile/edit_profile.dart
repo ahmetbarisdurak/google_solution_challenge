@@ -4,8 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:async';
-import 'dart:io';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -18,9 +16,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final descriptionController = TextEditingController();
-  final ImagePicker _pickerImage = ImagePicker();
-  dynamic _pickImage;
-  var profileImage;
 
   String username = "";
 

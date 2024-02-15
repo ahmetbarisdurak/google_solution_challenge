@@ -262,14 +262,16 @@ class _MapUIStatecustom extends State<MapUIcustom> {
         elevation: 0,
 
         backgroundColor: Colors.transparent,
-        title: Text(
-          LocaleKeys.maps_title.tr(),
-          style: GoogleFonts.prozaLibre(
-            color: const Color(0xffe97d47),
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            height: 1.355,
-          )
+        title: Center(
+          child : Text(
+            LocaleKeys.maps_title.tr(),
+            style: GoogleFonts.prozaLibre(
+              color: Colors.grey[900],
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              height: 1.355,
+            )
+          ),
         ),
       ),
       body: Stack(

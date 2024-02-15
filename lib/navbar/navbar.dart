@@ -1,10 +1,10 @@
 import 'dart:math';
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
 import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
 import 'package:google_solution_challenge/screens/home/maps/map_custom.dart';
-//import 'package:google_solution_challenge/screens/home/volunteer/volunteer.dart';
-import 'package:google_solution_challenge/screens/home/camera/camera.dart';
+import 'package:google_solution_challenge/screens/home/camera/CameraHome.dart';
 import 'package:google_solution_challenge/screens/explore/explore.dart';
 import 'package:google_solution_challenge/screens/profile/sos_rev.dart';
 import "package:flutter/material.dart";
@@ -12,6 +12,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -23,6 +24,7 @@ class _NavBarState extends State<NavBar> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   double _latitude = 36.2025833;
   double _longitude = 36.1604033, distance = 0, _earthltt = 0, _earthlgt = 0;
+  List<CameraDescription>? cameras;
 
   late LatLng _currentPostion = const LatLng(38.9637, 35.2433);
   late GeoPoint _EarthPostion = const GeoPoint(36.2025833, 36.1604033);
@@ -54,8 +56,8 @@ class _NavBarState extends State<NavBar> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Deprem Uyarısı!'),
-          content: SingleChildScrollView(
+          title: const Text('Deprem Uyarısı!'),
+          content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text('Yakınınızda bir deprem meydana geldi.'), // locale keys kısmına eklenecek
@@ -65,7 +67,7 @@ class _NavBarState extends State<NavBar> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Anladım'), // locale keys kısmına eklenecek.
+              child: const Text('Anladım'), // locale keys kısmına eklenecek.
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -100,6 +102,14 @@ class _NavBarState extends State<NavBar> {
     _getUserLocation();
     FirebaseDocument();
     super.initState();
+    availableCameras().then((availableCameras) {
+      setState(() {
+        cameras = availableCameras;
+        print("Cameraları okuyoruz");
+        print(cameras);
+        print(cameras?.length);
+      });
+    });
   }
 
   final controller = Get.put(NavBarController());
@@ -109,11 +119,11 @@ class _NavBarState extends State<NavBar> {
         return Scaffold(
           body: IndexedStack(
             index: controller.tabIndex,
-            children: const [
+            children: [
               EarthquakerPage(),
               SOSButton(),
-              // ARPage(),
-              // CameraPage(), kamera buraya gelecek
+              // ARPage(), // AR page
+              CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
             ],
           ),
@@ -133,7 +143,7 @@ class _NavBarState extends State<NavBar> {
                 onTabChange: controller.changeTabIndex,
                 backgroundColor: Colors.transparent,
                 color: Colors.black,
-                activeColor: const Color(0xffe97d47),
+                activeColor: Colors.white,
                 tabBackgroundColor: const Color.fromARGB(43, 233, 125, 71),
                 gap: 10.0,
                 padding: const EdgeInsets.all(16.0),

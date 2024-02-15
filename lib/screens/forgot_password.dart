@@ -18,7 +18,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     super.dispose();
   }
 
-  @override
   Future sendResetEmail() async {
     try {
       await FirebaseAuth.instance
