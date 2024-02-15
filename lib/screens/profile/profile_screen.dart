@@ -168,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                       child: Text(
-                        username,
+                        "${username}",
                         style: const TextStyle(
                             fontFamily: "Raleway", fontWeight: FontWeight.bold),
                       ),
@@ -177,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 10.0),
                       child: Text(
-                        description,
+                        "  Status\n${description}",
                         style: TextStyle(
                           fontFamily: "Raleway",
                           fontWeight: FontWeight.bold,
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fontSize: 20.0),
                             ),
                             const SizedBox(
-                              height: 10.0,
+                              height: 5.0,
                             ),
                             Text(
                               LocaleKeys.Profile_profileScreen_Posts.tr(),
@@ -222,7 +222,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const EditProfilePage())),
                         LocaleKeys.Profile_profileScreen_EditProfile.tr()),
-                    buildButton(sos_mobile, LocaleKeys.Profile_profileScreen_sosButton.tr()),
                   ],
                 ),
               ),
