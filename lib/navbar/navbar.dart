@@ -42,7 +42,7 @@ class _NavBarState extends State<NavBar> {
         distance = EvalDistance(_latitude, _longitude, _earthltt, _earthlgt);
       });
       // Eğer belirli bir mesafenin altındaysa (örneğin 0.1 derece), uyarı göster
-      if (distance < 10000.1) {
+      if (distance < 10) {
         _showEarthquakeAlert();
       }
     }

@@ -154,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       body: RefreshIndicator(
-        color: const Color(0xffe97d47),
+        color: Colors.blueGrey,
         onRefresh: _refresh,
         child: SingleChildScrollView(
           child: Column(
@@ -288,21 +288,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 .then((value) =>
                                                 Navigator.pop(
                                                     context)),
-                                            child: const Text(
-                                              LocaleKeys.Profile_profileScreen_Yes,
+                                            child: Text(
+                                              LocaleKeys.Profile_profileScreen_Yes.tr(),
                                               style: TextStyle(
-                                                  color:
-                                                  Color(0xffe97d47)),
+                                                  color: Colors.blueGrey
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(width: 15),
                                           InkWell(
                                             onTap: () =>
                                                 Navigator.pop(context),
-                                            child: const Text(
-                                              LocaleKeys.Profile_profileScreen_No,
+                                            child: Text(
+                                              LocaleKeys.Profile_profileScreen_No.tr(),
                                               style: TextStyle(
-                                                color: Color(0xffe97d47),
+                                                color: Colors.red,
                                               ),
                                             ),
                                           ),
@@ -313,7 +313,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               );
                             }
-
 
 
                             if (myReport['user'] == username) {
@@ -382,15 +381,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           children: [
                                             IconButton(
                                               onPressed: () {},
-                                              icon: const Icon(Icons.call),
-                                            ),
-                                            const SizedBox(width: 10),
-                                            IconButton(
-                                              onPressed: () {},
                                               icon:
                                               const Icon(Icons.location_on),
                                             ),
-                                            const SizedBox(width: 10),
                                             IconButton(
                                               onPressed: () =>
                                                   showChoiceDialog(
@@ -446,7 +439,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           width: 250.0,
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           decoration: BoxDecoration(
-              color: const Color(0xffe97d47),
+              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(
