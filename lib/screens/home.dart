@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           LocaleKeys.Home_HomePage.tr(),
           style: GoogleFonts.prozaLibre(
-            color: const Color(0xffe97d47),
+            color: Colors.blueGrey,
             fontSize: 25,
             fontWeight: FontWeight.w600,
             height: 1.355,
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textStyle: const TextStyle(
                         fontSize: 25, fontWeight: FontWeight.bold),
                     elevation: 15,
-                    shadowColor: const Color(0xffe97d47),
+                    shadowColor: Colors.blueGrey,
                     side: const BorderSide(color: Color(0xffe97d47), width: 4),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0))),

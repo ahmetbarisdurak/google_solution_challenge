@@ -78,7 +78,7 @@ abstract class  LocaleKeys {
   static const Register_cancel = 'Register_cancel';
   static const Register_RegisterPage = 'Register_RegisterPage';
   static const Register_Name = 'Register_Name';
-  static const Register_Sname = 'Register_Sname';
+  static const Register_Surname = 'Register_Surname';
   static const Register_email = 'Register_email';
   static const Register_description = 'Register_description';
   static const Register_Password = 'Register_Password';
@@ -91,7 +91,9 @@ abstract class  LocaleKeys {
   static const explore_page_title = 'explore_page_title';
   static const explore_page_post = 'explore_page_post';
   static const maps_title = 'maps_title';
+
   static const earthquaker_title = 'earthquaker_title';
+
   static const make_your_voice_heard_reports = 'make_your_voice_heard_reports';
   static const make_your_voice_heard_choose = 'make_your_voice_heard_choose';
   static const make_your_voice_heard_report_missing = 'make_your_voice_heard_report_missing';

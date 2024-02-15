@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/screens/components/CustomSnackBarContent.dart';
 import 'package:google_solution_challenge/translations/locale_keys.g.dart';
@@ -8,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:google_solution_challenge/services/report_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
@@ -29,9 +27,6 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
   String surname = "";
   final ReportService _reportService = ReportService();
   final postController = TextEditingController();
-  final ImagePicker _pickerImage = ImagePicker();
-  dynamic _pickImage;
-  var profileImage;
 
   // for map
   final Completer<GoogleMapController> _controller = Completer();
@@ -61,30 +56,6 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
     ));
   }
 
-  Widget imagePlace() {
-    if (profileImage != null) {
-      return Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Image(
-          image: FileImage(File(profileImage!.path)),
-        ),
-      );
-    } else {
-      if (_pickImage != null) {
-        return Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Image(
-            image: NetworkImage(_pickImage),
-          ),
-        );
-      } else {
-        return const SizedBox(
-          height: 10.0,
-        );
-      }
-    }
-  }
-
   FirebaseDocument() async {
     var document = await db.collection('Person').doc(user.uid).get();
     Map<String, dynamic>? value = document.data();
@@ -92,43 +63,6 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
       setState(() {
         name = value!['name'];
         surname = value['surname'];
-      });
-    }
-  }
-
-  handleTakePhoto(ImageSource source, {required BuildContext context}) async {
-        () => Navigator.pop(context);
-    try {
-      final pickedFile = await _pickerImage.pickImage(source: source);
-      setState(() {
-        profileImage = pickedFile!;
-        print("dosyaya geldim: $profileImage");
-        if (profileImage != null) {}
-      });
-      print('aaa');
-    } catch (e) {
-      setState(() {
-        _pickImage = e;
-        print("Image Error: $_pickImage");
-      });
-    }
-  }
-
-  handleChooseFromGallery(ImageSource source,
-      {required BuildContext context}) async {
-    Navigator.pop(context);
-    try {
-      final pickedFile = await _pickerImage.pickImage(source: source);
-      setState(() {
-        profileImage = pickedFile!;
-        print("dosyaya geldim: $profileImage");
-        if (profileImage != null) {}
-      });
-      print('aaa');
-    } catch (e) {
-      setState(() {
-        _pickImage = e;
-        print("Image Error: $_pickImage");
       });
     }
   }
@@ -152,39 +86,6 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
         elevation: 0,
       ));
       Navigator.pop(context);
-    });
-  }
-
-  void imagePicker() async {
-    Future.delayed(Duration.zero, () {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return SimpleDialog(
-            title: Text(
-                LocaleKeys.make_your_voice_heard_debris_page_pick_image.tr()),
-            children: [
-              SimpleDialogOption(
-                onPressed: () =>
-                    handleTakePhoto(ImageSource.camera, context: context),
-                child: Text(
-                    LocaleKeys.make_your_voice_heard_debris_page_camera.tr()),
-              ),
-              SimpleDialogOption(
-                onPressed: () => handleChooseFromGallery(ImageSource.gallery,
-                    context: context),
-                child: Text(
-                    LocaleKeys.make_your_voice_heard_debris_page_gallery.tr()),
-              ),
-              SimpleDialogOption(
-                child: Text(
-                    LocaleKeys.make_your_voice_heard_debris_page_cancel.tr()),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          );
-        },
-      );
     });
   }
 
@@ -229,9 +130,6 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
             const SizedBox(
               height: 10.0,
             ),
-            imagePlace(),
-            buildButton(imagePicker,
-                LocaleKeys.make_your_voice_heard_debris_page_pick_image.tr()),
             SizedBox(
                 height: 250,
                 width: MediaQuery.of(context).size.width,

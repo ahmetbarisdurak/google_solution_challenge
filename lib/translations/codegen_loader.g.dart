@@ -271,7 +271,7 @@ static const Map<String,dynamic> en = {
   "Register_description": "Write your description here.",
   "Register_Password": "Password",
   "Register_ConfirmPassword": "Confirm Password",
-  "Register_or": "O continue with",
+  "Register_or": "or continue with",
   "Register_already": "Already registered?",
   "Register_logIn": " Login",
   "Register_signIn": "Sign In",
@@ -279,7 +279,7 @@ static const Map<String,dynamic> en = {
   "explore_page_title": "Explore",
   "explore_page_post": "Blog Posts",
   "maps_title": "Maps",
-  "Earthquaker_title": "Earthquaker",
+  "earthquaker_title": "Earthquaker",
   "make_your_voice_heard_reports": "Reports",
   "make_your_voice_heard_choose": "Choose what you want to report",
   "make_your_voice_heard_report_missing": "Report a missing person",
@@ -445,6 +445,8 @@ static const Map<String,dynamic> tr = {
 
 
   "earthquaker_title": "Earthquaker",
+
+
   "make_your_voice_heard_reports": "Raporlar",
   "make_your_voice_heard_choose": "Neyi raporlamak istediğini seç",
   "make_your_voice_heard_report_missing": "Bir kayıp ilanı ver",

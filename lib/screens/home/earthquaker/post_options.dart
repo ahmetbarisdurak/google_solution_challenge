@@ -1,4 +1,3 @@
-import 'package:google_solution_challenge/screens/home/earthquaker/debris_post/debris_post_page.dart';
 import 'package:google_solution_challenge/screens/home/earthquaker/missing_post/missing_post_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,15 @@ showOptions(context) {
     context: context,
     builder: (context) {
       return SimpleDialog(
-        title: Text(LocaleKeys.make_your_voice_heard_choose.tr()),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(
+          LocaleKeys.make_your_voice_heard_choose.tr(),
+          style: TextStyle(
+            color: Colors.black, // Başlık rengi
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         children: [
           SimpleDialogOption(
             onPressed: () {
@@ -26,19 +33,23 @@ showOptions(context) {
                 MaterialPageRoute(builder: (context) => MissingPostPage()),
               );
             },
-            child: Text(LocaleKeys.make_your_voice_heard_report_missing.tr()), // Kayıp ilanı veriyor.
-          ),
-          SimpleDialogOption(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const DebrisPostPage()),
+            child: ListTile(
+              leading: Icon(Icons.search, color: Colors.grey[900]), // Kayıp ilanı için ikon
+              title: Text(
+                LocaleKeys.make_your_voice_heard_report_missing.tr(),
+                style: TextStyle(color: Colors.black87),
+              ),
             ),
-            child: Text(LocaleKeys.make_your_voice_heard_report_debris.tr()), // Yıkılmış bina ilanı veriyor. kaldırılabilir
           ),
           SimpleDialogOption(
-            child:
-            Text(LocaleKeys.make_your_voice_heard_debris_page_cancel.tr()),
             onPressed: () => Navigator.pop(context),
+            child: ListTile(
+              leading: Icon(Icons.close, color: Colors.red), // İptal için kırmızı ikon
+              title: Text(
+                LocaleKeys.make_your_voice_heard_debris_page_cancel.tr(),
+                style: TextStyle(color: Colors.redAccent),
+              ),
+            ),
           ),
         ],
       );

@@ -7,14 +7,14 @@ import 'package:url_launcher/url_launcher.dart';
 
 
 
-//class CameraScreen extends StatefulWidget {
-  //const CameraScreen({super.key});
-  //@override
-  //State<CameraScreen> createState() => _CameraScreenState();
+//class ARScreen extends StatefulWidget {
+//const ARScreen({super.key});
+//@override
+//State<ARScreen> createState() => _ARSreenState();
 //}
 
 // OMER buraya ekleme yapacak.
 
-class _CameraScreenState {
+class _ARSreenState {
 
 }
