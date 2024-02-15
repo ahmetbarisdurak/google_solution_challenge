@@ -39,8 +39,41 @@ class _NavBarState extends State<NavBar> {
         _EarthPostion = value['Hatay'];
         _earthltt = _EarthPostion.latitude;
         _earthlgt = _EarthPostion.longitude;
+        distance = EvalDistance(_latitude, _longitude, _earthltt, _earthlgt);
       });
+      // Eğer belirli bir mesafenin altındaysa (örneğin 0.1 derece), uyarı göster
+      if (distance < 10000.1) {
+        _showEarthquakeAlert();
+      }
     }
+  }
+
+
+  void _showEarthquakeAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Deprem Uyarısı!'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Yakınınızda bir deprem meydana geldi.'), // locale keys kısmına eklenecek
+                Text('Lütfen güvenli bir yere gidin ve talimatları takip edin.'), // locale keys kısmına eklenecek
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Anladım'), // locale keys kısmına eklenecek.
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   double EvalDistance(latitude, longitude, earthltt, earthlgt) {

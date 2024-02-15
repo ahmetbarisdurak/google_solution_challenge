@@ -55,6 +55,8 @@ class _MapUIStatecustom extends State<MapUIcustom> {
     const LatLng(41.0082, 28.9784)
   ];
 
+
+  // safe zonelar için kullanılabilir.
   populateClients_safeArea() {
     //clients=[];
     FirebaseFirestore.instance.collection("markers").get().then((docs) {
@@ -143,7 +145,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
     FirebaseFirestore.instance.collection("Status").get().then((docs) {
       if (docs.docs.isNotEmpty) {
         for (int i = 0; i < docs.docs.length; ++i) {
-          print("Status: i ${i}");
           loadData(docs.docs[i].data, i, "yellow"); // Since it is status, it should be yellow.
         }
       }
@@ -155,7 +156,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
       if (docs.docs.isNotEmpty) {
 
         for (int i = 0; i < docs.docs.length; ++i) {
-          print(" SOS: i ${i}");
           loadData(docs.docs[i].data, i + i_mar, "red"); // Since it is a SOS, it should be red.
         }
       }
