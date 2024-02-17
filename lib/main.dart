@@ -4,6 +4,7 @@ import 'package:google_solution_challenge/screens/intro_screens/intro_screen_3.d
 import 'package:google_solution_challenge/screens/intro_screens/intro_screen_4.dart';
 import 'package:google_solution_challenge/screens/login/auth_login.dart';
 import 'package:google_solution_challenge/screens/login/service/login_service.dart';
+import 'package:google_solution_challenge/screens/onboardingscreen.dart';
 import 'package:google_solution_challenge/translations/codegen_loader.g.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
 
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class MyApp extends StatelessWidget {
                 return const AuthPage();
                 //return const Intro_Wear();
               } else {
-                return const IntroScreen4();
+                return const AuthPage();
               }
             },
           ),
