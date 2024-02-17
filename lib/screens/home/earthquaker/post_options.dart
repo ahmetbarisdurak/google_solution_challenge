@@ -19,7 +19,7 @@ showOptions(context) {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(
-          LocaleKeys.make_your_voice_heard_choose.tr(),
+          LocaleKeys.earthquaker_choose.tr(),
           style: const TextStyle(
             color: Colors.black, // Başlık rengi
             fontWeight: FontWeight.bold,
@@ -36,7 +36,7 @@ showOptions(context) {
             child: ListTile(
               leading: Icon(Icons.search, color: Colors.grey[900]), // Kayıp ilanı için ikon
               title: Text(
-                LocaleKeys.make_your_voice_heard_report_missing.tr(),
+                LocaleKeys.earthquaker_report_missing.tr(),
                 style: const TextStyle(color: Colors.black87),
               ),
             ),
@@ -46,7 +46,7 @@ showOptions(context) {
             child: ListTile(
               leading: Icon(Icons.close, color: Colors.red), // İptal için kırmızı ikon
               title: Text(
-                LocaleKeys.make_your_voice_heard_debris_page_cancel.tr(),
+                LocaleKeys.earthquaker_debris_page_cancel.tr(),
                 style: TextStyle(color: Colors.redAccent),
               ),
             ),

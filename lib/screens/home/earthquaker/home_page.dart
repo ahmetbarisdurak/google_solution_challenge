@@ -80,7 +80,7 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
 
             child: Center(
               child: Text(
-                LocaleKeys.make_your_voice_heard_reports.tr(), // Rapor isimleri
+                LocaleKeys.earthquaker_reports.tr(), // Rapor isimleri
                 style: const TextStyle(
                   fontFamily: "Raleway",
                   fontWeight: FontWeight.bold,

@@ -3,14 +3,13 @@
 abstract class  LocaleKeys {
   static const language = 'language';
   static const helloWord = 'helloWord';
+
   static const forget_password_reset = 'forget_password_reset';
   static const forget_password_forgot_title = 'forget_password_forgot_title';
   static const forget_password_enterEmail = 'forget_password_enterEmail';
   static const forget_password_enterHere = 'forget_password_enterHere';
   static const forget_password_sendPswrd = 'forget_password_sendPswrd';
-  static const volunteer_Volunteer = 'volunteer_Volunteer';
-  static const volunteer_motivation = 'volunteer_motivation';
-  static const volunteer_whcity = 'volunteer_whcity';
+
   static const openingCards1Title = 'opening_cards_1_title';
   static const openingCards1 = 'opening_cards_1';
   static const openingCards2Title = 'opening_cards_2_title';
@@ -33,8 +32,6 @@ abstract class  LocaleKeys {
   static const loginPageSignIn = 'login_page_sign_in';
 
 
-  static const profileTakePhoto = 'profile_take_photo';
-  static const profileGalleryPhoto = 'profile_gallery_photo';
   static const profileCancel = 'profile_cancel';
   static const profileEdit = 'profile_edit';
   static const profileEditDescription = 'profile_edit_description';
@@ -94,74 +91,19 @@ abstract class  LocaleKeys {
 
   static const earthquaker_title = 'earthquaker_title';
 
-  static const make_your_voice_heard_reports = 'make_your_voice_heard_reports';
-  static const make_your_voice_heard_choose = 'make_your_voice_heard_choose';
-  static const make_your_voice_heard_report_missing = 'make_your_voice_heard_report_missing';
-  static const make_your_voice_heard_report_debris = 'make_your_voice_heard_report_debris';
-  static const make_your_voice_heard_report_missing_location = 'make_your_voice_heard_report_missing_location';
-  static const make_your_voice_heard_debris_page_cancel = 'make_your_voice_heard_debris_page_cancel';
-  static const make_your_voice_heard_debris_page_create = 'make_your_voice_heard_debris_page_create';
-  static const make_your_voice_heard_debris_page_type = 'make_your_voice_heard_debris_page_type';
-  static const make_your_voice_heard_debris_page_post = 'make_your_voice_heard_debris_page_post';
-  static const make_your_voice_heard_debris_page_pick_image = 'make_your_voice_heard_debris_page_pick_image';
-  static const make_your_voice_heard_debris_page_camera = 'make_your_voice_heard_debris_page_camera';
-  static const make_your_voice_heard_debris_page_gallery = 'make_your_voice_heard_debris_page_gallery';
-  static const make_your_voice_heard_debris_page_camera_cancel = 'make_your_voice_heard_debris_page_camera_cancel';
-  static const make_your_voice_heard_debris_page_post_shared = 'make_your_voice_heard_debris_page_post_shared';
-  static const donation_title = 'donation_title';
-  static const donation_blood = 'donation_blood';
-  static const donation_helpbox = 'donation_helpbox';
-  static const donation_money = 'donation_money';
-  static const donation_blood_page_title = 'donation_blood_page_title';
-  static const donation_money_page_title = 'donation_money_page_title';
-  static const donation_money_page_description = 'donation_money_page_description';
-  static const donation_money_page_afad = 'donation_money_page_afad';
-  static const donation_money_page_choose_amount = 'donation_money_page_choose_amount';
-  static const donation_money_page_thank_you = 'donation_money_page_thank_you';
-  static const donation_money_page_or = 'donation_money_page_or';
-  static const donation_money_page_enter_manually = 'donation_money_page_enter_manually';
-  static const donation_money_page_first_button = 'donation_money_page_first_button';
-  static const donation_money_page_second_button = 'donation_money_page_second_button';
-  static const donation_helpbox_page_intro = 'donation_helpbox_page_intro';
-  static const donation_helpbox_page_ready_to_report = 'donation_helpbox_page_ready_to_report';
-  static const donation_helpbox_page_get_started = 'donation_helpbox_page_get_started';
-  static const donation_helpbox_page_helpbox_main_title = 'donation_helpbox_page_helpbox_main_title';
-  static const donation_helpbox_page_helpbox_main_description = 'donation_helpbox_page_helpbox_main_description';
-  static const donation_helpbox_page_helpbox_main_boxes = 'donation_helpbox_page_helpbox_main_boxes';
-  static const donation_helpbox_page_helpbox_main_add_a_box = 'donation_helpbox_page_helpbox_main_add_a_box';
-  static const donation_helpbox_page_helpbox_main_clothes = 'donation_helpbox_page_helpbox_main_clothes';
-  static const donation_helpbox_page_helpbox_main_packed_food = 'donation_helpbox_page_helpbox_main_packed_food';
-  static const donation_helpbox_page_helpbox_main_toys = 'donation_helpbox_page_helpbox_main_toys';
-  static const donation_helpbox_page_helpbox_main_ai = 'donation_helpbox_page_helpbox_main_ai';
-  static const donation_helpbox_page_boxes_item_tile = 'donation_helpbox_page_boxes_item_tile';
-  static const donation_helpbox_page_call_authorized_title = 'donation_helpbox_page_call_authorized_title';
-  static const donation_helpbox_page_call_authorized_description = 'donation_helpbox_page_call_authorized_description';
-  static const donation_helpbox_page_call_authorized_name = 'donation_helpbox_page_call_authorized_name';
-  static const donation_helpbox_page_call_authorized_surname = 'donation_helpbox_page_call_authorized_surname';
-  static const donation_helpbox_page_call_authorized_city = 'donation_helpbox_page_call_authorized_city';
-  static const donation_helpbox_page_call_authorized_state = 'donation_helpbox_page_call_authorized_state';
-  static const donation_helpbox_page_call_authorized_address = 'donation_helpbox_page_call_authorized_address';
-  static const donation_helpbox_page_call_authorized_note = 'donation_helpbox_page_call_authorized_note';
-  static const donation_helpbox_page_call_authorized_thank_you_note = 'donation_helpbox_page_call_authorized_thank_you_note';
-  static const donation_helpbox_page_call_authorized_want_to_add_box = 'donation_helpbox_page_call_authorized_want_to_add_box';
-  static const donation_helpbox_page_call_authorized_turn_back = 'donation_helpbox_page_call_authorized_turn_back';
-  static const donation_helpbox_page_cart_model_clothes = 'donation_helpbox_page_cart_model_clothes';
-  static const donation_helpbox_page_cart_model_foods = 'donation_helpbox_page_cart_model_foods';
-  static const donation_helpbox_page_cart_model_toys = 'donation_helpbox_page_cart_model_toys';
-  static const donation_helpbox_page_cart_page_title = 'donation_helpbox_page_cart_page_title';
-  static const donation_helpbox_page_cart_page_box = 'donation_helpbox_page_cart_page_box';
-  static const donation_helpbox_page_cart_page_total_boxes = 'donation_helpbox_page_cart_page_total_boxes';
-  static const donation_helpbox_page_cart_page_total_piece = 'donation_helpbox_page_cart_page_total_piece';
-  static const donation_helpbox_page_cart_page_error_message = 'donation_helpbox_page_cart_page_error_message';
-  static const donation_helpbox_page_cart_page_call = 'donation_helpbox_page_cart_page_call';
-  static const donation_helpbox_page_help_tflite_box_added = 'donation_helpbox_page_help_tflite_box_added';
-  static const donation_helpbox_page_help_tflite_pick_an_image = 'donation_helpbox_page_help_tflite_pick_an_image';
-  static const donation_helpbox_page_help_tflite_camera = 'donation_helpbox_page_help_tflite_camera';
-  static const donation_helpbox_page_help_tflite_gallery = 'donation_helpbox_page_help_tflite_gallery';
-  static const donation_helpbox_page_help_tflite_cancel = 'donation_helpbox_page_help_tflite_cancel';
-  static const donation_helpbox_page_help_tflite_title = 'donation_helpbox_page_help_tflite_title';
-  static const donation_helpbox_page_help_tflite_no_image = 'donation_helpbox_page_help_tflite_no_image';
-  static const donation_helpbox_page_help_tflite_error_message = 'donation_helpbox_page_help_tflite_error_message';
-  static const donation_helpbox_page_help_tflite_pick_image = 'donation_helpbox_page_help_tflite_pick_image';
+  static const earthquaker_reports = 'earthquaker_reports';
+  static const earthquaker_choose = 'earthquaker_choose';
+  static const earthquaker_report_missing = 'earthquaker_report_missing';
+  static const earthquaker_report_debris = 'earthquaker_report_debris';
+  static const earthquaker_report_missing_location = 'earthquaker_report_missing_location';
+  static const earthquaker_debris_page_cancel = 'earthquaker_debris_page_cancel';
+  static const earthquaker_debris_page_create = 'earthquaker_debris_page_create';
+  static const earthquaker_debris_page_type = 'earthquaker_debris_page_type';
+  static const earthquaker_debris_page_post = 'earthquaker_debris_page_post';
+  static const earthquaker_debris_page_pick_image = 'earthquaker_debris_page_pick_image';
+  static const earthquaker_debris_page_camera = 'earthquaker_debris_page_camera';
+  static const earthquaker_debris_page_gallery = 'earthquaker_debris_page_gallery';
+  static const earthquaker_debris_page_camera_cancel = 'earthquaker_debris_page_camera_cancel';
+  static const earthquaker_debris_page_post_shared = 'earthquaker_debris_page_post_shared';
 
 }

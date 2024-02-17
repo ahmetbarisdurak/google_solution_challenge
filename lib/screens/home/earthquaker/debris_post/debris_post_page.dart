@@ -110,7 +110,7 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
         ),
         backgroundColor: Colors.transparent,
         title: Text(
-          LocaleKeys.make_your_voice_heard_debris_page_create.tr(),
+          LocaleKeys.earthquaker_debris_page_create.tr(),
           style: GoogleFonts.prozaLibre(
             color: const Color(0xffe97d47),
             fontSize: 20,
@@ -126,7 +126,7 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
               height: 20.0,
             ),
             buildTextField(postController,
-                LocaleKeys.make_your_voice_heard_debris_page_type.tr(), false),
+                LocaleKeys.earthquaker_debris_page_type.tr(), false),
             const SizedBox(
               height: 10.0,
             ),
@@ -150,7 +150,7 @@ class _DebrisPostPageState extends State<DebrisPostPage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: postReport,
         icon: const Icon(Icons.save),
-        label: Text(LocaleKeys.make_your_voice_heard_debris_page_post.tr()),
+        label: Text(LocaleKeys.earthquaker_debris_page_post.tr()),
         backgroundColor: const Color(0xffe97d47),
       ),
     );
