@@ -35,6 +35,8 @@ class _NavBarState extends State<NavBar> {
         .doc("mpQ3qaUnmo54pPKPu30W")
         .get();
 
+    print("denene");
+
     Map<String, dynamic>? value = document.data();
     if (mounted && value != null) {
       setState(() {

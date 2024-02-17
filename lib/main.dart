@@ -28,9 +28,7 @@ Future<void> main() async {
   );
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en'),
-          Locale('tr'),
-          Locale('ar')],
+        supportedLocales: const [Locale('en')],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
         saveLocale: true,

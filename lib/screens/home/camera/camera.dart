@@ -19,6 +19,7 @@ class Camera extends StatefulWidget {
 class _CameraState extends State<Camera> {
   late CameraController controller;
   bool isDetecting = false;
+  bool _showAlert = false; // Uyarı gösterimi için variable
 
   @override
   void initState() {
@@ -26,7 +27,8 @@ class _CameraState extends State<Camera> {
 
     if (widget.cameras == null || widget.cameras.length < 1) {
       print('No camera is found');
-    } else {
+    }
+    else {
       controller = CameraController(
         widget.cameras[0],
         ResolutionPreset.high,
@@ -53,6 +55,20 @@ class _CameraState extends State<Camera> {
             ).then((List<dynamic>? recognitions) {
               // Ensure recognitions is not null before proceeding
               if (recognitions != null) {
+                // Algılama sonuçları üzerinden döngü yap
+                for (var recognition in recognitions) {
+                  // `label` objenin türünü temsil eder (örneğin: "bed", "chair")
+                  String label = recognition["detectedClass"];
+
+                  // Belirli objeler için kontrol yap
+                  if (label == "bed" || label == "chair" || label == "book") {
+                    setState(() {
+                      _showAlert = true; // Uyarı gösterilecek
+                    });
+                    break; // Bir kez uyarı göstermek yeterli
+                  }
+                }
+
                 widget.setRecognitions(recognitions, img.height, img.width);
               }
               isDetecting = false;
@@ -77,6 +93,30 @@ class _CameraState extends State<Camera> {
   Widget build(BuildContext context) {
     if (controller == null || !controller.value.isInitialized) {
       return Container();
+    }
+
+    if (false) {
+      // Uyarı mesajını göster
+      WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Uyarı"),
+            content: Text("Deprem durumu için riskli obje tespit edildi. Bu objeyi kontrol et."),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Tamam"),
+                onPressed: () {
+                  setState(() {
+                    _showAlert = false; // Dialog'u kapat ve uyarıyı sıfırla
+                  });
+                  Navigator.of(context).pop(); // Dialog'u kapat
+                },
+              ),
+            ],
+          );
+        },
+      ));
     }
 
     Size? tmp = MediaQuery.of(context).size;

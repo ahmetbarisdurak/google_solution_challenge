@@ -35,7 +35,8 @@ class BindBox extends StatelessWidget {
           if (_x < difW / 2) w -= (difW / 2 - _x) * scaleW;
           y = _y * scaleH;
           h = _h * scaleH;
-        } else {
+        }
+        else {
           scaleH = screenW / previewW * previewH;
           scaleW = screenW;
           var difH = (scaleH - screenH) / scaleH;
@@ -44,6 +45,12 @@ class BindBox extends StatelessWidget {
           y = (_y - difH / 2) * scaleH;
           h = _h * scaleH;
           if (_y < difH / 2) h -= (difH / 2 - _y) * scaleH;
+        }
+
+        String labelText = "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%";
+        // Belirli nesneler için uyarı metni ekleme
+        if (re["detectedClass"] == "book" || re["detectedClass"] == "chair") {
+          labelText += " (Warning! This object can be dangerous in earthquake.)"; // Uyarı mesajı ekleniyor
         }
 
         return Positioned(
@@ -55,15 +62,14 @@ class BindBox extends StatelessWidget {
             padding: EdgeInsets.only(top: 5.0, left: 5.0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromRGBO(37, 213, 253, 1.0),
+                color: Colors.red,
                 width: 3.0,
               ),
             ),
             child: Text(
-              "${re["detectedClass"]} ${(re["confidenceInClass"] * 100)
-                  .toStringAsFixed(0)}%",
-              style: TextStyle(
-                color: Color.fromRGBO(37, 213, 253, 1.0),
+              labelText,
+              style: const TextStyle(
+                color: Colors.red,
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               ),

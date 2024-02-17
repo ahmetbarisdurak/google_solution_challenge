@@ -30,11 +30,13 @@ class _AuthPageState extends State<AuthPage> {
         .doc("s8t9yU5SmtrKK8BWw7kr")
         .get();
     Map<String, dynamic>? value = document.data();
-    if (mounted) {
+    if (value != null && mounted) {
       setState(() {
-        _EarthPostion = value!['Hatay'];
-        _earthltt = _EarthPostion.latitude;
-        _earthlgt = _EarthPostion.longitude;
+        var earthPosition = value['Hatay'];
+        if (earthPosition != null && earthPosition is GeoPoint) {
+          _earthltt = earthPosition.latitude;
+          _earthlgt = earthPosition.longitude;
+        }
       });
     }
   }
