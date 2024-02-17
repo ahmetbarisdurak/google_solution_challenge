@@ -124,7 +124,7 @@ class _NavBarState extends State<NavBar> {
             children: [
               EarthquakerPage(),
               SOSButton(),
-              // ARPage(), // AR page
+              //HelloWorld(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
             ],
