@@ -29,7 +29,8 @@ class FirebaseUserAuthentication {
         password: password.toString().trim(),
       );
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const AuthPage()));
+        context,
+          MaterialPageRoute(builder: (context) => const AuthPage()));
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         wrongEmailMessage(context);
@@ -48,7 +49,7 @@ class FirebaseUserAuthentication {
         return AlertDialog(
           backgroundColor: Colors.blueGrey,
           title: Text(
-            LocaleKeys.Login_service_incrtmail.tr(),
+            LocaleKeys.loginServiceInvalidMail.tr(),
             style: const TextStyle(color: Colors.white),
           ),
         );
@@ -63,7 +64,7 @@ class FirebaseUserAuthentication {
         return AlertDialog(
           backgroundColor: Colors.blueGrey,
           title: Text(
-            LocaleKeys.Login_service_incrtmail.tr(),
+            LocaleKeys.loginServiceInvalidPassword.tr(),
             style: const TextStyle(color: Colors.white),
           ),
         );
@@ -78,7 +79,7 @@ class FirebaseUserAuthentication {
         return AlertDialog(
           backgroundColor: Colors.blueGrey,
           title: Text(
-            LocaleKeys.Login_service_incrtboth.tr(),
+            LocaleKeys.loginServiceEmptyField.tr(),
             style: const TextStyle(color: Colors.white),
           ),
         );

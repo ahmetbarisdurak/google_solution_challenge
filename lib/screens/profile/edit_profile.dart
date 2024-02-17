@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_solution_challenge/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:google_solution_challenge/translations/locale_keys.g.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -16,6 +17,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final descriptionController = TextEditingController();
+  var profileImage;
 
   String username = "";
 
@@ -46,7 +48,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          LocaleKeys.Profile_editProfile_editProfile.tr(),
+          LocaleKeys.profileEdit.tr(),
           style: TextStyle(
             color: Colors.grey.shade800,
             fontFamily: "Raleway",
@@ -82,21 +84,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 20, bottom: 20),
                 child: buildTextField(descriptionController,
-                    LocaleKeys.Profile_editProfile_newDescription.tr(), false),
+                    LocaleKeys.profileEditDescription.tr(), false),
               ),
-              Text(LocaleKeys.Profile_editProfile_toChangePswrd.tr()),
+              Text(LocaleKeys.profileEditPasswordChange.tr()),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: buildTextField(
-                    descriptionController, LocaleKeys.Profile_editProfile_NewPassword.tr(), false),
+                    descriptionController, LocaleKeys.profileEditPasswordNew.tr(), false),
               ),
               Padding(
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 20, bottom: 20),
                 child: buildTextField(
-                    descriptionController, LocaleKeys.Profile_editProfile_ConfirmPassword.tr(), false),
+                    descriptionController, LocaleKeys.profileEditPasswordConfirm.tr(), false),
               ),
-              buildButton(() => null, LocaleKeys.Profile_editProfile_ConfirmChanges.tr()),
+              buildButton(() => null, LocaleKeys.profileEditConfirmAll.tr()),
             ],
           ),
         ),
