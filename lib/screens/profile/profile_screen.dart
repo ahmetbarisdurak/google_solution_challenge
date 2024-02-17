@@ -77,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void sos_mobile() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const SosRev())); //SosMobile
+        context, MaterialPageRoute(builder: (context) => const SOSButton())); //SosMobile
   }
 
   @override
@@ -154,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       body: RefreshIndicator(
-        color: const Color(0xffe97d47),
+        color: Colors.blueGrey,
         onRefresh: _refresh,
         child: SingleChildScrollView(
           child: Column(
@@ -168,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                       child: Text(
-                        username,
+                        "${username}",
                         style: const TextStyle(
                             fontFamily: "Raleway", fontWeight: FontWeight.bold),
                       ),
@@ -177,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 10.0),
                       child: Text(
-                        description,
+                        "  Status\n${description}",
                         style: TextStyle(
                           fontFamily: "Raleway",
                           fontWeight: FontWeight.bold,
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fontSize: 20.0),
                             ),
                             const SizedBox(
-                              height: 10.0,
+                              height: 5.0,
                             ),
                             Text(
                               LocaleKeys.Profile_profileScreen_Posts.tr(),
@@ -222,7 +222,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const EditProfilePage())),
                         LocaleKeys.Profile_profileScreen_EditProfile.tr()),
-                    buildButton(sos_mobile, LocaleKeys.Profile_profileScreen_sosButton.tr()),
                   ],
                 ),
               ),
@@ -288,21 +287,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 .then((value) =>
                                                 Navigator.pop(
                                                     context)),
-                                            child: const Text(
-                                              LocaleKeys.Profile_profileScreen_Yes,
+                                            child: Text(
+                                              LocaleKeys.Profile_profileScreen_Yes.tr(),
                                               style: TextStyle(
-                                                  color:
-                                                  Color(0xffe97d47)),
+                                                  color: Colors.blueGrey
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(width: 15),
                                           InkWell(
                                             onTap: () =>
                                                 Navigator.pop(context),
-                                            child: const Text(
-                                              LocaleKeys.Profile_profileScreen_No,
+                                            child: Text(
+                                              LocaleKeys.Profile_profileScreen_No.tr(),
                                               style: TextStyle(
-                                                color: Color(0xffe97d47),
+                                                color: Colors.red,
                                               ),
                                             ),
                                           ),
@@ -313,7 +312,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               );
                             }
-
 
 
                             if (myReport['user'] == username) {
@@ -382,15 +380,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           children: [
                                             IconButton(
                                               onPressed: () {},
-                                              icon: const Icon(Icons.call),
-                                            ),
-                                            const SizedBox(width: 10),
-                                            IconButton(
-                                              onPressed: () {},
                                               icon:
                                               const Icon(Icons.location_on),
                                             ),
-                                            const SizedBox(width: 10),
                                             IconButton(
                                               onPressed: () =>
                                                   showChoiceDialog(
@@ -446,7 +438,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           width: 250.0,
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           decoration: BoxDecoration(
-              color: const Color(0xffe97d47),
+              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(

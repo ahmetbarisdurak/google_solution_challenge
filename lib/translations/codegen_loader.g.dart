@@ -270,7 +270,7 @@ static const Map<String,dynamic> en = {
   "Register_description": "Write your description here.",
   "Register_Password": "Password",
   "Register_ConfirmPassword": "Confirm Password",
-  "Register_or": "Or continue with",
+  "Register_or": "or continue with",
   "Register_already": "Already registered?",
   "Register_logIn": " Login",
   "Register_signIn": "Sign In",

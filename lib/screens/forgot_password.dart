@@ -26,7 +26,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: const Color(0xffe97d47),
+          backgroundColor: Colors.blueGrey,
           content: Text(
             LocaleKeys.forget_password_reset.tr(),
             style: const TextStyle(color: Colors.white),
@@ -57,7 +57,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Color(0xffe97d47),
+            color: Colors.blueGrey,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -73,11 +73,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Can You Hear Me?",
+                    "Earthquaker",
                     style: TextStyle(
                         fontFamily: "Pacifico",
                         fontSize: 30.0,
-                        color: Color(0xffe97d47),
+                        color: Colors.red,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -87,7 +87,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       fontSize: 15.0,
                       letterSpacing: 2.5,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 174, 174),
+                      color: Colors.blueGrey,
                     ),
                   ),
                   SizedBox(
@@ -145,7 +145,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           width: 250.0,
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-              color: const Color(0xffe97d47),
+              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(
