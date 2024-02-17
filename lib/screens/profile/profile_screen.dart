@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: Center(
           child: Text(
-            LocaleKeys.Profile_profileScreen_MyProfile.tr(),
+            LocaleKeys.profileScreenMyProfile.tr(),
             style: TextStyle(
               color: Colors.grey.shade800,
               fontFamily: "Raleway",

@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> {
         return AlertDialog(
           backgroundColor: Colors.blueGrey,
           title: Text(
-            LocaleKeys.Login_Page_ring.tr(),
+            LocaleKeys.loginPageWhistle.tr(),
             style: const TextStyle(color: Colors.white),
           ),
         );
@@ -230,7 +230,7 @@ class _MainPageState extends State<MainPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  LocaleKeys.Login_Page_notHaveAccount.tr(),
+                  LocaleKeys.loginPageCreateAccount.tr(),
                   style: const TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                   ),
@@ -238,7 +238,7 @@ class _MainPageState extends State<MainPage> {
                 GestureDetector(
                   onTap: registerUser,
                   child: Text(
-                    LocaleKeys.Login_Page_signUp.tr(),
+                    LocaleKeys.loginPageSignUp.tr(),
                     style: const TextStyle(
                       color: Colors.blueGrey,
                       fontWeight: FontWeight.bold,
@@ -273,7 +273,7 @@ class _MainPageState extends State<MainPage> {
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(
-              LocaleKeys.Login_Page_logIn.tr(),
+              LocaleKeys.loginPageSignIn.tr(),
               style: const TextStyle(
                 color: Colors.white,
               ),

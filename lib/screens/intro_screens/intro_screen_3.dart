@@ -19,7 +19,7 @@ class IntroScreen3 extends StatelessWidget {
             const Image(image: AssetImage('assets/images/donate_people.png')),
             const SizedBox(height: 10.0),
             Text(
-              LocaleKeys.Intro3_Donate.tr(),
+              LocaleKeys.openingCards3Title.tr(),
               style: const TextStyle(
                   fontFamily: "Pacifico",
                   fontSize: 30.0,
@@ -28,7 +28,7 @@ class IntroScreen3 extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              LocaleKeys.Intro3_motivation.tr(),
+              LocaleKeys.openingCards3.tr(),
               style: const TextStyle(
                 fontFamily: "Source Sans Pro",
                 fontSize: 18.0,
