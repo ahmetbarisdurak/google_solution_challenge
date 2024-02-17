@@ -20,7 +20,7 @@ showOptions(context) {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(
           LocaleKeys.make_your_voice_heard_choose.tr(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black, // Başlık rengi
             fontWeight: FontWeight.bold,
           ),
@@ -37,7 +37,7 @@ showOptions(context) {
               leading: Icon(Icons.search, color: Colors.grey[900]), // Kayıp ilanı için ikon
               title: Text(
                 LocaleKeys.make_your_voice_heard_report_missing.tr(),
-                style: TextStyle(color: Colors.black87),
+                style: const TextStyle(color: Colors.black87),
               ),
             ),
           ),
