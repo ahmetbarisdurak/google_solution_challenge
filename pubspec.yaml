@@ -88,6 +88,11 @@ dependencies:
   path_provider: ^2.1.2
   camera: ^0.10.5+9
   image: ^4.1.7
+  arcore_flutter_plugin:
+    git:
+      url: https://github.com/giandifra/arcore_flutter_plugin.git
+      ref: android-upgrading
+
 
 
 dev_dependencies:
