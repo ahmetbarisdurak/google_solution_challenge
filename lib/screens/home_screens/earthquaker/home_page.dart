@@ -221,11 +221,11 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
         onPressed: () {
           showOptions(context);
         },
-        child: const Icon(Icons.add),
         elevation: 10.0, // Butona gölge ekler
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16.0)), // Daha yuvarlak köşeler
         ),
+        child: const Icon(Icons.add),
       ),
     );
   }

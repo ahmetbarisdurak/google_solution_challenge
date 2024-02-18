@@ -36,7 +36,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
     );
     _buttonScale = Tween<double>(begin: 1.0, end: 0.9).animate(_animationController!);
   }
@@ -48,13 +48,11 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       setState(() {
         name = value!['name'];
         surname = value['surname'];
-        print("Printing name");
-        print(name);
       });
     }
   }  
 
-  void SOSsent() {
+  void sosSent() {
     showDialog(
       context: context, // Burada hata çıkıyor hala.
       builder: (context) {
@@ -70,7 +68,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
     );
   }
 
-  void WarnMessage(BuildContext context,latitude,longitude) {
+  void warnMessage(BuildContext context,latitude,longitude) {
     FirebaseDocument();
     // set up the buttons
     Widget cancelButton = TextButton(
@@ -83,8 +81,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       child: Text(LocaleKeys.Profile_sosMobile_Continue.tr(), style: const TextStyle(color: Colors.white, fontSize: 24),),
       onPressed:  () {
         Navigator.of(context, rootNavigator: true).pop();
-        print("key is pressed so sending sos message");
-        SendSosMessage(latitude,longitude); // Send SOS message if key pressed
+        sendSosMessage(latitude,longitude); // Send SOS message if key pressed
         Navigator.pop(context);
         
       },
@@ -116,7 +113,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
 
   }
 
-  Future<void> SendSosMessage(latitude,longitude) async {
+  Future<void> sendSosMessage(latitude,longitude) async {
     FirebaseDocument();
 
     _reportService
@@ -124,7 +121,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                   ("$name $surname"),
                   GeoPoint(latitude, longitude),
         ).then((value) {
-          SOSsent();
+          sosSent();
     });
   
   }
@@ -180,7 +177,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
               _longitude = position.longitude;
             });
             FirebaseDocument();
-            WarnMessage(context, _latitude, _longitude);
+            warnMessage(context, _latitude, _longitude);
           }
         });
       },

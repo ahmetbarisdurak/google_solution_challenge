@@ -9,16 +9,16 @@ class AppPage {
     GetPage(name: navbar, page: () => const NavBar()),
     GetPage(name: home, page: () => const HomeScreen()),
     GetPage(name: profile, page: () => const ProfileScreen()),
-    GetPage(name: explore, page: () => const InformationScreen())
+    GetPage(name: information, page: () => const InformationScreen())
   ];
 
   static String navbar = "/";
   static String home = "/home";
   static String profile = "/profile";
-  static String explore = "/explore";
+  static String information = "/information";
 
   static getNavBar() => navbar;
   static getHome() => home;
   static getProfile() => profile;
-  static getExplore() => explore;
+  static getInformation() => information;
 }

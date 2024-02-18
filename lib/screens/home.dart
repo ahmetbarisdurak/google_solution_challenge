@@ -1,6 +1,4 @@
 import 'package:google_solution_challenge/screens/home_screens/earthquaker/home_page.dart';
-import 'package:google_solution_challenge/translations/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'home_screens/maps/map_custom.dart';

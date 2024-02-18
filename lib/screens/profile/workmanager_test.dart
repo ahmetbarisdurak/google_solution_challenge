@@ -21,10 +21,8 @@ void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
     switch (task) {
       case simplePeriodicTask:
-        print("$simplePeriodicTask was executed");
         break;
       case simplePeriodic1HourTask:
-        print("$simplePeriodic1HourTask was executed");
         break;
     }
 

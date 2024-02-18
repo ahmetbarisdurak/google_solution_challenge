@@ -33,8 +33,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       setState(() {
         String a = value['name'] ?? ''; // name null ise boş string ata
         String b = value['surname'] ?? ''; // surname null ise boş string ata
-        print("Print ediyorum");
-        print(a.toString());
+
         username = "$a $b";
       });
     }

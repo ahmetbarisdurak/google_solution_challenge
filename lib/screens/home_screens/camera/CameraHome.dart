@@ -5,7 +5,7 @@ import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
 import 'camera.dart';
-import 'BindBox.dart';
+import 'bindBox.dart';
 
 const String ssd = "SSD MobileNet";
 const String yolo = "Tiny YOLOv2";
@@ -58,7 +58,7 @@ class _CameraHomePageState extends State<CameraHomePage> {
       appBar: AppBar(
         backgroundColor: const Color(0xff96c9f1),
         leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               setState(() {
                 _model = "";

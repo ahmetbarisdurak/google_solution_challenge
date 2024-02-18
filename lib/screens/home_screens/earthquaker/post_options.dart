@@ -44,10 +44,10 @@ showOptions(context) {
           SimpleDialogOption(
             onPressed: () => Navigator.pop(context),
             child: ListTile(
-              leading: Icon(Icons.close, color: Colors.red), // İptal için kırmızı ikon
+              leading: const Icon(Icons.close, color: Colors.red), // İptal için kırmızı ikon
               title: Text(
                 LocaleKeys.earthquaker_debris_page_cancel.tr(),
-                style: TextStyle(color: Colors.redAccent),
+                style: const TextStyle(color: Colors.redAccent),
               ),
             ),
           ),

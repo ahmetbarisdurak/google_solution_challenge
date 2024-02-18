@@ -19,14 +19,13 @@ class Camera extends StatefulWidget {
 class _CameraState extends State<Camera> {
   late CameraController controller;
   bool isDetecting = false;
-  bool _showAlert = false; // Uyarı gösterimi için variable
 
   @override
   void initState() {
     super.initState();
 
     if (widget.cameras == null || widget.cameras.length < 1) {
-      print('No camera is found');
+      // print('No camera is found');
     }
     else {
       controller = CameraController(
@@ -63,7 +62,7 @@ class _CameraState extends State<Camera> {
                   // Belirli objeler için kontrol yap
                   if (label == "bed" || label == "chair" || label == "book") {
                     setState(() {
-                      _showAlert = true; // Uyarı gösterilecek
+                      
                     });
                     break; // Bir kez uyarı göstermek yeterli
                   }
@@ -74,7 +73,7 @@ class _CameraState extends State<Camera> {
               isDetecting = false;
             }).catchError((error) {
               // Handle any errors here
-              print("Error detecting objects: $error");
+              // print("Error detecting objects: $error");
               isDetecting = false;
             });
           }
@@ -93,30 +92,6 @@ class _CameraState extends State<Camera> {
   Widget build(BuildContext context) {
     if (controller == null || !controller.value.isInitialized) {
       return Container();
-    }
-
-    if (false) {
-      // Uyarı mesajını göster
-      WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Uyarı"),
-            content: Text("Deprem durumu için riskli obje tespit edildi. Bu objeyi kontrol et."),
-            actions: <Widget>[
-              TextButton(
-                child: Text("Tamam"),
-                onPressed: () {
-                  setState(() {
-                    _showAlert = false; // Dialog'u kapat ve uyarıyı sıfırla
-                  });
-                  Navigator.of(context).pop(); // Dialog'u kapat
-                },
-              ),
-            ],
-          );
-        },
-      ));
     }
 
     Size? tmp = MediaQuery.of(context).size;

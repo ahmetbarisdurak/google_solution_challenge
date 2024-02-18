@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/models/report.dart';
-import 'package:google_solution_challenge/services/storage_service.dart';
 
 class ReportService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final StorageService _storageService = StorageService();
-  String mediaUrl = '';
 
   Future<Report> addStatus(
       String status,

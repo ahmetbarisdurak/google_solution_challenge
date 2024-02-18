@@ -36,11 +36,10 @@ class _SosMobileState extends State<SosMobile> {
     setState(() {
       name = value!['name'];
       surname = value['surname'];
-      print(name);
     });
   }  
 
-  void SOSsent() {
+  void sosSent() {
     showDialog(
       context: context,
       builder: (context) {
@@ -69,7 +68,7 @@ class _SosMobileState extends State<SosMobile> {
       child: Text(LocaleKeys.Profile_sosMobile_Continue.tr(), style: const TextStyle(color: Colors.white, fontSize: 24),),
       onPressed:  () {
         Navigator.of(context, rootNavigator: true).pop();   
-        SendSosMessage(latitude,longitude);
+        sendSosMessage(latitude,longitude);
         Navigator.pop(context);
         
       },
@@ -102,7 +101,7 @@ class _SosMobileState extends State<SosMobile> {
   }
 
 
-  Future<void> SendSosMessage(latitude,longitude) async {
+  Future<void> sendSosMessage(latitude,longitude) async {
     FirebaseDocument();
   
     _reportService
@@ -110,7 +109,7 @@ class _SosMobileState extends State<SosMobile> {
                   ("$name $surname"),
                   GeoPoint(latitude, longitude),
         ).then((value) {
-          SOSsent();
+          sosSent();
     });
   
   }
@@ -208,7 +207,6 @@ class _SosMobileState extends State<SosMobile> {
                       setState(() {
                         _latitude=value.latitude;
                         _longitude=value.longitude;
-                        print(_latitude);
                         //last_latLng=LatLng(_latitude, _longitude);
                       });
                     },);

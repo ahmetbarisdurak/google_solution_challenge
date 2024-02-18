@@ -20,7 +20,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
 
   final LatLng _latLng = const LatLng(28.7041, 77.1025);
   final double _zoom = 15.0;
-  int i_mar = 0;
+  int iMarker = 0;
   bool mapToggle = false;
   var currentLocation;
 
@@ -39,7 +39,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
         mapToggle = true;
 
         markStatus();
-        i_mar = _markers.length;
+        iMarker = _markers.length;
 
         markSOS();
 
@@ -54,92 +54,6 @@ class _MapUIStatecustom extends State<MapUIcustom> {
     const LatLng(38.4237, 27.1428),
     const LatLng(41.0082, 28.9784)
   ];
-
-
-  // safe zonelar için kullanılabilir.
-  populateClients_safeArea() {
-    //clients=[];
-    FirebaseFirestore.instance.collection("markers").get().then((docs) {
-      if (docs.docs.isNotEmpty) {
-        for (int i = 0; i < docs.docs.length; ++i) {
-          //clients.add(docs.docs[i].data);
-          loadData_safeArea(docs.docs[i].data, i + i_mar);
-        }
-      }
-    });
-  }
-
-  loadData_safeArea(latLang, i) {
-    _markers.add(
-      Marker(
-        markerId: MarkerId("$i"),
-        position: LatLng(
-            latLang()['location'].latitude, latLang()['location'].longitude),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-        onTap: () {
-          _customInfoWindowController.addInfoWindow!(
-            Container(
-              height: 300,
-              width: 200,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 300,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(latLang()['image']),
-                            fit: BoxFit.fitWidth,
-                            filterQuality: FilterQuality.high),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        color: const Color.fromARGB(255, 255, 197, 146)),
-                  ),
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(top: 10, left: 10, right: 10),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 200,
-                          child: Text(
-                            latLang()['clientName'],
-                            maxLines: 2,
-                            overflow: TextOverflow.fade,
-                            softWrap: false,
-                          ),
-                        ),
-                        const Spacer(),
-                        const Text("!!!")
-                      ],
-                    ),
-                  ),
-                  Padding(
-                      padding:
-                      const EdgeInsets.only(top: 10, left: 10, right: 10),
-                      child: Text(
-                        latLang()['snippet'],
-                        maxLines: 2,
-                      ))
-                ],
-              ),
-            ),
-            LatLng(latLang()['location'].latitude,
-                latLang()['location'].longitude),
-          );
-        },
-      ),
-    );
-    setState(() {});
-  }
 
   markStatus() {
     FirebaseFirestore.instance.collection("Status").get().then((docs) {
@@ -156,7 +70,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
       if (docs.docs.isNotEmpty) {
 
         for (int i = 0; i < docs.docs.length; ++i) {
-          loadData(docs.docs[i].data, i + i_mar, "red"); // Since it is a SOS, it should be red.
+          loadData(docs.docs[i].data, i + iMarker, "red"); // Since it is a SOS, it should be red.
         }
       }
     });
@@ -181,7 +95,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
         onTap: () {
           _customInfoWindowController.addInfoWindow!(
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               height: 180,
               width: 200,
               decoration: BoxDecoration(
@@ -254,7 +168,7 @@ class _MapUIStatecustom extends State<MapUIcustom> {
   Widget build(BuildContext context) {
 
     markStatus();
-    i_mar = _markers.length;
+    iMarker = _markers.length;
     markSOS();
 
     return Scaffold(

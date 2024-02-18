@@ -22,7 +22,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   double _latitude = 36.2025833;
-  double _longitude = 36.1604033, distance = 0, _earthltt = 0, _earthlgt = 0;
+  double _longitude = 36.1604033, distance = 0, earthLatitude = 0, earthLongitude = 0;
   List<CameraDescription>? cameras;
 
   late LatLng _currentPostion = const LatLng(38.9637, 35.2433);
@@ -34,15 +34,13 @@ class _NavBarState extends State<NavBar> {
         .doc("mpQ3qaUnmo54pPKPu30W")
         .get();
 
-    print("denene");
-
     Map<String, dynamic>? value = document.data();
     if (mounted && value != null) {
       setState(() {
         _EarthPostion = value['Hatay'];
-        _earthltt = _EarthPostion.latitude;
-        _earthlgt = _EarthPostion.longitude;
-        distance = EvalDistance(_latitude, _longitude, _earthltt, _earthlgt);
+        earthLatitude = _EarthPostion.latitude;
+        earthLongitude = _EarthPostion.longitude;
+        distance = evalDistance(_latitude, _longitude, earthLatitude, earthLongitude);
       });
       // Eğer belirli bir mesafenin altındaysa (örneğin 0.1 derece), uyarı göster
       if (distance < 10) {
@@ -50,7 +48,6 @@ class _NavBarState extends State<NavBar> {
       }
     }
   }
-
 
   void _showEarthquakeAlert() {
     showDialog(
@@ -79,11 +76,9 @@ class _NavBarState extends State<NavBar> {
     );
   }
 
-  double EvalDistance(latitude, longitude, earthltt, earthlgt) {
-    double dst = sqrt((earthltt - latitude) * (earthltt - latitude) +
-        (earthlgt - longitude) * (earthlgt - longitude));
-    print(
-        "$latitude $longitude $earthltt $earthlgt $dst *********************************");
+  double evalDistance(latitude, longitude, earthLatitude, earthLongitude) {
+    double dst = sqrt((earthLatitude - latitude) * (earthLatitude - latitude) +
+        (earthLongitude - longitude) * (earthLongitude - longitude));
     return dst;
   }
 
@@ -118,11 +113,11 @@ class _NavBarState extends State<NavBar> {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              EarthquakerPage(),
-              SOSButton(),
-              // ARPage(), // AR page
+              const EarthquakerPage(),
+              const SOSButton(),
+              // const ARPage(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
-              MapUIcustom(),
+              const MapUIcustom(),
             ],
           ),
           bottomNavigationBar: Container(

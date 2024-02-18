@@ -174,17 +174,14 @@ class _MissingPostPageState extends State<MissingPostPage> {
                         zoomGesturesEnabled: true,
                         zoomControlsEnabled: true,
                         onMapCreated: (GoogleMapController controller) {
-                          print("Map created");
                         },
                         onPlacePicked: (PickResult result) {
-                          print("Place picked: ${result.formattedAddress}");
                           setState(() {
                             selectedPlace = result;
                             Navigator.of(context).pop();
                           });
                         },
                         onMapTypeChanged: (MapType mapType) {
-                          print("Map type changed to ${mapType.toString()}");
                         },
                       );
                     },

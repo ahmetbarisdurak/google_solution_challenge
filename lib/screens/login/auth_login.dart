@@ -42,11 +42,9 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
-  double EvalDistance(latitude, longitude, earthltt, earthlgt) {
+  double evalDistance(latitude, longitude, earthltt, earthlgt) {
     double dst = sqrt((earthltt - latitude) * (earthltt - latitude) +
         (earthlgt - longitude) * (earthlgt - longitude));
-    print(
-        "$latitude $longitude $earthltt $earthlgt $dst *********************************");
     return dst;
   }
 
