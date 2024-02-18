@@ -173,7 +173,6 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       onTapUp: _onTapUp,
       onTap: () {
         // Burada mevcut konumunuzu alıp SOS mesajı gönderme işlemini tetikleyin
-        print("SOS mesajı gönderiliyor...");
         _getCurrentLocation().then((position) {
           if (mounted) {
             setState(() {
@@ -187,7 +186,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       },
       child: ScaleTransition(
         scale: _buttonScale!,
-        child: CircleAvatar(
+        child: const CircleAvatar(
           radius: 80,
           backgroundColor: Colors.red,
           child: Icon(Icons.warning, size: 80, color: Colors.white),
@@ -199,55 +198,6 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 10,
-          title: Text(
-            LocaleKeys.Profile_sosMobile_sosButton.tr(),
-            style: TextStyle(color: Colors.black87),
-          ),
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black87,
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context)=> SimpleDialog(
-                      title: Text(LocaleKeys.Profile_sosMobile_sosButton.tr()),
-                      contentPadding: const EdgeInsets.all(20.0),
-                      children: [
-                        Text(LocaleKeys.Profile_sosMobile_info.tr()),
-                        TextButton(
-                          onPressed:() {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                            LocaleKeys.Profile_sosMobile_Close.tr(),
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        )
-                      ],
-
-                    )
-                  );
-                },
-                child: const Icon(
-                  Icons.info_outline,
-                  color: Colors.black87,
-                ),
-              ),
-            )
-          ],
-      ),
-
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -262,12 +212,12 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                   style: GoogleFonts.lato(
                       fontSize: 96,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 217, 0, 0)
+                      color: const Color.fromARGB(255, 217, 0, 0)
                   ),
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 60,
               ),
               Center(
                 child: Column(
@@ -289,7 +239,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                   style: GoogleFonts.openSans(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 0, 0, 0)
+                      color: const Color.fromARGB(255, 0, 0, 0)
                   ),
                 ),
               ),

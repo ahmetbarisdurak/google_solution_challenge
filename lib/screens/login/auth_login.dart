@@ -19,7 +19,8 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   double _latitude = 0;
-  double _longitude = 0, distance = 0, _earthltt = 0, _earthlgt = 0;
+  double _longitude = 0, distance = 0;
+  double _earthltt = 0, _earthlgt = 0;
 
   late LatLng _currentPostion = const LatLng(38.9637, 35.2433);
   late GeoPoint _EarthPostion = const GeoPoint(36.2025833, 36.1604033);

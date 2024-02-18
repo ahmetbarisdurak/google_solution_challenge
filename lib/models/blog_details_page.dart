@@ -6,7 +6,7 @@ class BlogDetailsPage extends StatefulWidget {
   const BlogDetailsPage({super.key, required this.data});
 
   @override
-  _BlogDetailsPageState createState() => _BlogDetailsPageState();
+  State<BlogDetailsPage> createState() => _BlogDetailsPageState();
 }
 
 class _BlogDetailsPageState extends State<BlogDetailsPage> {

@@ -2,10 +2,9 @@ import 'dart:math';
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
-import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
-import 'package:google_solution_challenge/screens/home/maps/map_custom.dart';
-import 'package:google_solution_challenge/screens/home/camera/CameraHome.dart';
-import 'package:google_solution_challenge/screens/explore/explore.dart';
+import 'package:google_solution_challenge/screens/home_screens/earthquaker/home_page.dart';
+import 'package:google_solution_challenge/screens/home_screens/maps/map_custom.dart';
+import 'package:google_solution_challenge/screens/home_screens//camera/CameraHome.dart';
 import 'package:google_solution_challenge/screens/profile/sos_rev.dart';
 import "package:flutter/material.dart";
 import 'package:geolocator/geolocator.dart';
@@ -107,9 +106,6 @@ class _NavBarState extends State<NavBar> {
     availableCameras().then((availableCameras) {
       setState(() {
         cameras = availableCameras;
-        print("Cameraları okuyoruz");
-        print(cameras);
-        print(cameras?.length);
       });
     });
   }

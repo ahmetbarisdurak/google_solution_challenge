@@ -1,7 +1,7 @@
 import 'package:google_solution_challenge/navbar/navbar.dart';
 import 'package:google_solution_challenge/screens/home.dart';
 import 'package:google_solution_challenge/screens/profile/profile_screen.dart';
-import 'package:google_solution_challenge/screens/explore/explore.dart';
+import 'package:google_solution_challenge/screens/information_screen/information.dart';
 import 'package:get/get.dart';
 
 class AppPage {
