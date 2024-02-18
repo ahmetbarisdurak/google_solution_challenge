@@ -5,13 +5,14 @@ import 'package:google_solution_challenge/controller/controller.dart';
 import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
 import 'package:google_solution_challenge/screens/home/maps/map_custom.dart';
 import 'package:google_solution_challenge/screens/home/camera/CameraHome.dart';
-import 'package:google_solution_challenge/screens/explore/explore.dart';
 import 'package:google_solution_challenge/screens/profile/sos_rev.dart';
 import "package:flutter/material.dart";
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
+import '../screens/home/camera/InputPage.dart';
 
 
 class NavBar extends StatefulWidget {
@@ -124,7 +125,7 @@ class _NavBarState extends State<NavBar> {
             children: [
               EarthquakerPage(),
               SOSButton(),
-              //HelloWorld(), // AR page
+              InputPage(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
             ],

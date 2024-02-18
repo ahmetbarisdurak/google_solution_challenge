@@ -94,7 +94,6 @@ dependencies:
       ref: android-upgrading
 
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

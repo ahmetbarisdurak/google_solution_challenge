@@ -2,12 +2,21 @@ import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
-class HelloWorld extends StatefulWidget {
+class CameraPage extends StatefulWidget {
+  final double rectangleWidth; // Dikdörtgenin genişliği
+  final double rectangleHeight; // Dikdörtgenin yüksekliği
+
+  // Constructor ekledik
+  const CameraPage({super.key,
+    required this.rectangleWidth,
+    required this.rectangleHeight,
+  });
+
   @override
-  _HelloWorldState createState() => _HelloWorldState();
+  _CameraPageState createState() => _CameraPageState();
 }
 
-class _HelloWorldState extends State<HelloWorld> {
+class _CameraPageState extends State<CameraPage> {
   late ArCoreController arCoreController;
 
   @override
@@ -15,7 +24,7 @@ class _HelloWorldState extends State<HelloWorld> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Hello World'),
+          title: const Text('Olamaz Ya'),
         ),
         body: ArCoreView(
           onArCoreViewCreated: _onArCoreViewCreated,
@@ -26,57 +35,21 @@ class _HelloWorldState extends State<HelloWorld> {
 
   void _onArCoreViewCreated(ArCoreController controller) {
     arCoreController = controller;
-
-    _addSphere(arCoreController);
-    _addCylindre(arCoreController);
-    _addCube(arCoreController);
+    _addRectangle(arCoreController);
   }
 
-  void _addSphere(ArCoreController controller) {
+  void _addRectangle(ArCoreController controller) {
     final material = ArCoreMaterial(
-        color: const Color.fromARGB(120, 66, 134, 244));
-    final sphere = ArCoreSphere(
-      materials: [material],
-      radius: 0.1,
+      color: const Color.fromARGB(120, 66, 134, 244),
     );
-    final node = ArCoreNode(
-      shape: sphere,
+    final rectangle = ArCoreNode(
+      shape: ArCoreCube(
+        materials: [material],
+        size: vector.Vector3(widget.rectangleWidth, 0.01, widget.rectangleHeight),
+      ),
       position: vector.Vector3(0, 0, -1.5),
     );
-    controller.addArCoreNode(node);
-  }
-
-  void _addCylindre(ArCoreController controller) {
-    final material = ArCoreMaterial(
-      color: Colors.red,
-      reflectance: 1.0,
-    );
-    final cylindre = ArCoreCylinder(
-      materials: [material],
-      radius: 0.5,
-      height: 0.3,
-    );
-    final node = ArCoreNode(
-      shape: cylindre,
-      position: vector.Vector3(0.0, -0.5, -2.0),
-    );
-    controller.addArCoreNode(node);
-  }
-
-  void _addCube(ArCoreController controller) {
-    final material = ArCoreMaterial(
-      color: Color.fromARGB(120, 66, 134, 244),
-      metallic: 1.0,
-    );
-    final cube = ArCoreCube(
-      materials: [material],
-      size: vector.Vector3(0.5, 0.5, 0.5),
-    );
-    final node = ArCoreNode(
-      shape: cube,
-      position: vector.Vector3(-0.5, 0.5, -3.5),
-    );
-    controller.addArCoreNode(node);
+    controller.addArCoreNode(rectangle);
   }
 
   @override
