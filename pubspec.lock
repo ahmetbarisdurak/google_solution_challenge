@@ -17,6 +17,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  ar_flutter_plugin:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "2fd47b564953f17b869a728600ba9777ef196a12"
+      url: "https://github.com/OSenoll/ar_flutter_plugin_update.git"
+    source: git
+    version: "0.7.3"
   archive:
     dependency: transitive
     description:
