@@ -124,7 +124,7 @@ flutter:
     - assets/yolov2_tiny.txt
     - assets/ssd_mobilenet.tflite
     - assets/ssd_mobilenet.txt
-    - assets/ar_models
+    - assets/ar_models/
 
 
 
