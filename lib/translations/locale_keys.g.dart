@@ -2,13 +2,12 @@
 
 abstract class  LocaleKeys {
   static const language = 'language';
-  static const helloWord = 'helloWord';
 
   static const forget_password_reset = 'forget_password_reset';
   static const forget_password_forgot_title = 'forget_password_forgot_title';
   static const forget_password_enterEmail = 'forget_password_enterEmail';
   static const forget_password_enterHere = 'forget_password_enterHere';
-  static const forget_password_sendPswrd = 'forget_password_sendPswrd';
+  static const forget_password_sendPassword = 'forget_password_sendPswrd';
 
   static const openingCards1Title = 'opening_cards_1_title';
   static const openingCards1 = 'opening_cards_1';
@@ -18,9 +17,10 @@ abstract class  LocaleKeys {
   static const openingCards3 = 'opening_cards_3';
   static const openingCards4Title = 'opening_cards_4_title';
   static const openingCards4 = 'opening_cards_4';
+
   static const loginServiceInvalidMail = 'Login_service_invalid_mail';
   static const loginServiceInvalidPassword = 'Login_service_invalid_password';
-  static const loginServiceEmptyField = 'Login_service_empty_field';
+  static const loginServiceEmptyField = 'Login_service_empty_fields';
   static const loginPageWhistle = 'Login_page_whistle';
   static const Login_Page_loginPage = 'Login_Page_loginPage';
   static const Login_Page_email = 'Login_Page_email';
@@ -31,18 +31,17 @@ abstract class  LocaleKeys {
   static const loginPageSignUp = 'login_page_sign_up';
   static const loginPageSignIn = 'login_page_sign_in';
 
-
   static const profileCancel = 'profile_cancel';
   static const profileEdit = 'profile_edit';
-  static const profileEditDescription = 'profile_edit_description';
+  static const profileEditStatus = 'profile_edit_status';
   static const profileEditPasswordChange = 'profile_edit_password_change';
   static const profileEditPasswordNew = 'profile_edit_password_new';
   static const profileEditPasswordConfirm = 'profile_edit_password_confirm';
   static const profileEditConfirmAll = 'profile_edit_confirm_all';
+
   static const profileScreenMyProfile = 'Profile_profileScreen_MyProfile';
   static const Profile_profileScreen_Posts = 'Profile_profileScreen_Posts';
   static const Profile_profileScreen_EditProfile = 'Profile_profileScreen_EditProfile';
-  static const Profile_profileScreen_addDevice = 'Profile_profileScreen_addDevice';
   static const Profile_profileScreen_sosButton = 'Profile_profileScreen_sosButton';
   static const Profile_profileScreen_deletePost = 'Profile_profileScreen_deletePost';
   static const Profile_profileScreen_Yes = 'Profile_profileScreen_Yes';
@@ -60,18 +59,12 @@ abstract class  LocaleKeys {
   static const Profile_sosMobile_Close = 'Profile_sosMobile_Close';
   static const Profile_sosMobile_SOS = 'Profile_sosMobile_SOS';
   static const Profile_sosMobile_emergency = 'Profile_sosMobile_emergency';
-  static const Home_HomePage = 'Home_HomePage';
-  static const Home_MYVH = 'Home_MYVH';
-  static const Home_Volunteer = 'Home_Volunteer';
-  static const Home_Donate = 'Home_Donate';
-  static const Home_Maps = 'Home_Maps';
+
   static const OnBoarding_Done = 'OnBoarding_Done';
   static const OnBoarding_Next = 'OnBoarding_Next';
   static const OnBoarding_Skip = 'OnBoarding_Skip';
+
   static const Register_pswrdMatch = 'Passwords dont match.';
-  static const Register_pickImage = 'Register_pickImage';
-  static const Register_photoCam = 'Register_photoCam';
-  static const Register_photoGall = 'Register_photoGall';
   static const Register_cancel = 'Register_cancel';
   static const Register_RegisterPage = 'Register_RegisterPage';
   static const Register_Name = 'Register_Name';
@@ -85,8 +78,9 @@ abstract class  LocaleKeys {
   static const Register_logIn = 'Register_logIn';
   static const Register_signIn = 'Register_signIn';
   static const components_notification = 'components_notification';
-  static const explore_page_title = 'explore_page_title';
-  static const explore_page_post = 'explore_page_post';
+
+  static const information_page_title = 'information_page_title';
+  static const information_page_post = 'information_page_post';
   static const maps_title = 'maps_title';
 
   static const earthquaker_title = 'earthquaker_title';

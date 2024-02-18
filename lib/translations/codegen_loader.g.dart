@@ -16,13 +16,12 @@ class CodegenLoader extends AssetLoader{
 
   static const Map<String,dynamic> en = {
     "language": "My Posts",
-    "helloWord": "Hello Word",
 
     "forget_password_reset": "Password reset email sent successfully.",
     "forget_password_forgot_title": "Forgot Password Page",
     "forget_password_enterEmail": "Enter your email and we'll send you a password reset link.",
     "forget_password_enterHere": "Enter your email here.",
-    "forget_password_sendPswrd": "Send Password Reset Email",
+    "forget_password_sendPassword": "Send Password Reset Email",
 
     "opening_cards_1_title": "Help",
     "opening_cards_1": "You can help people in need\n by using the markers on the map",
@@ -35,8 +34,7 @@ class CodegenLoader extends AssetLoader{
     "Login_service_invalid_mail": "Invalid email.",
     "Login_service_invalid_password": "Invalid password.",
     "Login_service_empty_fields": "Invalid email or password.",
-
-    "Login_page_whistle": "To Pause The Sound, Please Press The Button Again.",
+    "Login_page_whistle": "To Pause The Sound, please Press The Button Again.",
     "Login_Page_loginPage": "Login Page",
     "Login_Page_email": "E-mail",
     "Login_Page_password": "Password",
@@ -49,7 +47,7 @@ class CodegenLoader extends AssetLoader{
 
     "profile_cancel": "Cancel",
     "profile_edit": "Edit Profile",
-    "profile_edit_description": "Write your description.",
+    "profile_edit_status": "Write your status.",
     "profile_edit_password_change": "To change your password",
     "profile_edit_password_new": "New Password",
     "profile_edit_password_confirm": "Confirm password",
@@ -58,7 +56,6 @@ class CodegenLoader extends AssetLoader{
     "Profile_profileScreen_MyProfile": "My Profile",
     "Profile_profileScreen_Posts": "Posts",
     "Profile_profileScreen_EditProfile": "Edit Profile",
-    "Profile_profileScreen_addDevice": "Add Device",
     "Profile_profileScreen_sosButton": "SOS Button",
     "Profile_profileScreen_deletePost": "Do you really want to delete this post?",
     "Profile_profileScreen_Yes": "Yes",
@@ -75,22 +72,13 @@ class CodegenLoader extends AssetLoader{
     "Profile_sosMobile_info": "Use when needed!",
     "Profile_sosMobile_Close": "Close",
     "Profile_sosMobile_SOS": "S.O.S",
-    "Profile_sosMobile_emergency": "IN CASE OF AN EMERGENCY PRESS THE BUTTON",
-
-    "Home_HomePage": "Home Page",
-    "Home_MYVH": "Make Your Voice Heard",
-    "Home_Volunteer": "Volunteer",
-    "Home_Donate": "Donate",
-    "Home_Maps": "Maps",
+    "Profile_sosMobile_emergency": "EARTHQUAKE SOS BUTTON",
 
     "OnBoarding_Done": "Done",
     "OnBoarding_Next": "Next",
     "OnBoarding_Skip": "Skip",
 
     "Register_pswrdMatch": "Passwords do not match.",
-    "Register_pickImage": "Pick an image",
-    "Register_photoCam": "Photo with Camera",
-    "Register_photoGall": "Photo from Gallery",
     "Register_cancel": "Cancel",
     "Register_RegisterPage": "Register Page",
     "Register_Name": "Name",
@@ -104,8 +92,9 @@ class CodegenLoader extends AssetLoader{
     "Register_logIn": " Login",
     "Register_signIn": "Sign In",
     "components_notification": "Notification!",
-    "explore_page_title": "Explore",
-    "explore_page_post": "Blog Posts",
+
+    "information_page_title": "Information",
+    "information_page_post": "Blog Posts",
 
     "maps_title": "Maps",
     "earthquaker_title": "Earthquaker",

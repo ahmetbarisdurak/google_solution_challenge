@@ -83,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 20, bottom: 20),
                 child: buildTextField(descriptionController,
-                    LocaleKeys.profileEditDescription.tr(), false),
+                    LocaleKeys.profileEditStatus.tr(), false),
               ),
               Text(LocaleKeys.profileEditPasswordChange.tr()),
               Padding(

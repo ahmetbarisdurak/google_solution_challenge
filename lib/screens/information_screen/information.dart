@@ -23,7 +23,7 @@ class _InformationScreenState extends State<InformationScreen> {
           color: Colors.grey.shade800,
         ),
         title: Text(
-          LocaleKeys.explore_page_title.tr(),
+          LocaleKeys.information_page_title.tr(),
           style: TextStyle(
             color: Colors.grey.shade800,
             fontFamily: "Raleway",
@@ -60,7 +60,7 @@ class _InformationScreenState extends State<InformationScreen> {
             padding:
             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: Text(
-              LocaleKeys.explore_page_post.tr(),
+              LocaleKeys.information_page_post.tr(),
               style: const TextStyle(
                 fontFamily: "Raleway",
                 fontWeight: FontWeight.bold,

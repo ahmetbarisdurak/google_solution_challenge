@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          LocaleKeys.Home_HomePage.tr(),
+          "HomePage",
           style: GoogleFonts.prozaLibre(
             color: Colors.blueGrey,
             fontSize: 25,
@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(LocaleKeys.Home_Maps.tr(),),
+                      Text("Home Maps",),
                       //SizedBox(width: 75,),
                     ]),
               ),
