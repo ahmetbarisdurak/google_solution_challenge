@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
+import 'package:google_solution_challenge/screens/home_screens/building_risk/building_risk.dart';
 import 'package:google_solution_challenge/screens/home_screens/earthquaker/home_page.dart';
 import 'package:google_solution_challenge/screens/home_screens/maps/map_custom.dart';
 import 'package:google_solution_challenge/screens/home_screens//camera/CameraHome.dart';
@@ -22,7 +23,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   double _latitude = 36.2025833;
-  double _longitude = 36.1604033, distance = 0, earthLatitude = 0, earthLongitude = 0;
+  double _longitude = 36.1604033, distance = 0, _earthltt = 0, _earthlgt = 0;
   List<CameraDescription>? cameras;
 
   late LatLng _currentPostion = const LatLng(38.9637, 35.2433);
@@ -34,13 +35,15 @@ class _NavBarState extends State<NavBar> {
         .doc("mpQ3qaUnmo54pPKPu30W")
         .get();
 
+    print("denene");
+
     Map<String, dynamic>? value = document.data();
     if (mounted && value != null) {
       setState(() {
         _EarthPostion = value['Hatay'];
-        earthLatitude = _EarthPostion.latitude;
-        earthLongitude = _EarthPostion.longitude;
-        distance = evalDistance(_latitude, _longitude, earthLatitude, earthLongitude);
+        _earthltt = _EarthPostion.latitude;
+        _earthlgt = _EarthPostion.longitude;
+        distance = EvalDistance(_latitude, _longitude, _earthltt, _earthlgt);
       });
       // Eğer belirli bir mesafenin altındaysa (örneğin 0.1 derece), uyarı göster
       if (distance < 10) {
@@ -48,6 +51,7 @@ class _NavBarState extends State<NavBar> {
       }
     }
   }
+
 
   void _showEarthquakeAlert() {
     showDialog(
@@ -76,9 +80,11 @@ class _NavBarState extends State<NavBar> {
     );
   }
 
-  double evalDistance(latitude, longitude, earthLatitude, earthLongitude) {
-    double dst = sqrt((earthLatitude - latitude) * (earthLatitude - latitude) +
-        (earthLongitude - longitude) * (earthLongitude - longitude));
+  double EvalDistance(latitude, longitude, earthltt, earthlgt) {
+    double dst = sqrt((earthltt - latitude) * (earthltt - latitude) +
+        (earthlgt - longitude) * (earthlgt - longitude));
+    print(
+        "$latitude $longitude $earthltt $earthlgt $dst *********************************");
     return dst;
   }
 
@@ -101,6 +107,9 @@ class _NavBarState extends State<NavBar> {
     availableCameras().then((availableCameras) {
       setState(() {
         cameras = availableCameras;
+        print("Cameraları okuyoruz");
+        print(cameras);
+        print(cameras?.length);
       });
     });
   }
@@ -113,11 +122,12 @@ class _NavBarState extends State<NavBar> {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              const EarthquakerPage(),
-              const SOSButton(),
-              // const ARPage(), // AR page
+              EarthquakerPage(),
+              SOSButton(),
+              //ObjectsOnPlanesWidget(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
-              const MapUIcustom(),
+              MapUIcustom(),
+              BuildingInfoForm(),
             ],
           ),
           bottomNavigationBar: Container(
@@ -130,7 +140,7 @@ class _NavBarState extends State<NavBar> {
             ),
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
               child: GNav(
                 selectedIndex: controller.tabIndex,
                 onTabChange: controller.changeTabIndex,
@@ -155,11 +165,15 @@ class _NavBarState extends State<NavBar> {
                   ),
                   GButton(
                     icon: Icons.camera_alt,
-                    text: "Camera",
+                    text: "Cam",
                   ),
                   GButton(
                     icon: Icons.map,
                     text: "Maps",
+                  ),
+                  GButton(
+                    icon: Icons.house,
+                    text: "Risk",
                   ),
                 ],
               ),
