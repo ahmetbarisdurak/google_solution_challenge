@@ -126,8 +126,6 @@ flutter:
     - assets/ssd_mobilenet.txt
     - assets/ar_models/
 
-
-
   fonts:
     - family: Quicksand
       fonts:

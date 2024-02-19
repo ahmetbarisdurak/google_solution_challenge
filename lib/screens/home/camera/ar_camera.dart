@@ -65,7 +65,6 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
     this.arSessionManager = arSessionManager;
     this.arObjectManager = arObjectManager;
     this.arAnchorManager = arAnchorManager;
-
     this.arSessionManager!.onInitialize(
       showFeaturePoints: false,
       showPlanes: true,
@@ -105,8 +104,8 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
         this.anchors.add(newAnchor);
         // Add note to anchor
         var newNode = ARNode(
-            type: NodeType.webGLB,
-            uri: "assets/ar_models/Box.glb",
+            type: NodeType.localGLTF2,
+            uri: "assets/ar_models/Box.gltf",
             scale: Vector3(0.2, 0.2, 0.2),
             position: Vector3(0.0, 0.0, 0.0),
             rotation: Vector4(1.0, 0.0, 0.0, 0.0));
