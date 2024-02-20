@@ -22,7 +22,7 @@ class MissingPostPage extends StatefulWidget {
 
   MissingPostPage({super.key});
 
-  static const kInitialPosition = LatLng(38, 36);
+  static const kInitialPosition = LatLng(38.9637, 35.2433);
 
   final GoogleMapsFlutterPlatform mapsImplementation =
       GoogleMapsFlutterPlatform.instance;
