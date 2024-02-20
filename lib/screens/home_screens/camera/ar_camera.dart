@@ -146,6 +146,9 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
       showPlanes: true,
       customPlaneTexturePath: "Images/triangle.png",
       showWorldOrigin: true,
+      showAnimatedGuide: false,
+
+
     );
     this.arObjectManager!.onInitialize();
 
