@@ -128,6 +128,7 @@ class _NavBarState extends State<NavBar> {
               //ObjectsOnPlanesWidget(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
+              BuildingInfoForm(),
               ImageClassification(),
             ],
           ),
@@ -141,7 +142,7 @@ class _NavBarState extends State<NavBar> {
             ),
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               child: GNav(
                 selectedIndex: controller.tabIndex,
                 onTabChange: controller.changeTabIndex,
@@ -150,7 +151,7 @@ class _NavBarState extends State<NavBar> {
                 activeColor: Colors.white,
                 tabBackgroundColor: const Color.fromARGB(43, 233, 125, 71),
                 gap: 10.0,
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(0.0),
                 tabs: const [
                   GButton(
                     icon: Icons.home,
@@ -173,8 +174,12 @@ class _NavBarState extends State<NavBar> {
                     text: "Maps",
                   ),
                   GButton(
-                    icon: Icons.house,
+                    icon: Icons.grade,
                     text: "Risk",
+                  ),
+                  GButton(
+                    icon: Icons.house_outlined,
+                    text: "Clf",
                   ),
                 ],
               ),
