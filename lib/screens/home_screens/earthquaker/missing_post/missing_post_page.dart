@@ -78,6 +78,8 @@ class _MissingPostPageState extends State<MissingPostPage> {
       setState(() {
         name = value['name'];
         surname = value['surname'];
+
+        print("deneme");
       });
     }
   }
