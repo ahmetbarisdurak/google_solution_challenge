@@ -108,8 +108,7 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
               onPressed: () {
                 if (height != null && weight != null) {
                   double bmi = calculateBMI(height!, weight!);
-                  print(bmi);
-                  print("denemeARRRdeneme31");
+
                   if (bmi < 16) {
                     scaleValue = 0.3;
                   } else if (bmi >= 16 && bmi < 17) {
