@@ -168,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                       child: Text(
-                        "${username}",
+                        username,
                         style: const TextStyle(
                             fontFamily: "Raleway", fontWeight: FontWeight.bold),
                       ),
@@ -177,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30.0, vertical: 10.0),
                       child: Text(
-                        "  Status\n${description}",
+                        "  Status\n$description",
                         style: TextStyle(
                           fontFamily: "Raleway",
                           fontWeight: FontWeight.bold,
@@ -276,37 +276,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         Radius.circular(10),
                                       ),
                                     ),
-                                    content: Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.end,
-                                        children: [
-                                          InkWell(
-                                            onTap: () => _reportService
-                                                .removeStatus(myReport.id)
-                                                .then((value) =>
-                                                Navigator.pop(
-                                                    context)),
-                                            child: Text(
-                                              LocaleKeys.Profile_profileScreen_Yes.tr(),
-                                              style: TextStyle(
-                                                  color: Colors.blueGrey
-                                              ),
+                                    content: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.end,
+                                      children: [
+                                        InkWell(
+                                          onTap: () => _reportService
+                                              .removeStatus(myReport.id)
+                                              .then((value) =>
+                                              Navigator.pop(
+                                                  context)),
+                                          child: Text(
+                                            LocaleKeys.Profile_profileScreen_Yes.tr(),
+                                            style: const TextStyle(
+                                                color: Colors.blueGrey
                                             ),
                                           ),
-                                          const SizedBox(width: 15),
-                                          InkWell(
-                                            onTap: () =>
-                                                Navigator.pop(context),
-                                            child: Text(
-                                              LocaleKeys.Profile_profileScreen_No.tr(),
-                                              style: TextStyle(
-                                                color: Colors.red,
-                                              ),
+                                        ),
+                                        const SizedBox(width: 15),
+                                        InkWell(
+                                          onTap: () =>
+                                              Navigator.pop(context),
+                                          child: Text(
+                                            LocaleKeys.Profile_profileScreen_No.tr(),
+                                            style: const TextStyle(
+                                              color: Colors.red,
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   );
                                 },

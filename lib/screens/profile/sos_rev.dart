@@ -36,7 +36,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
     );
     _buttonScale = Tween<double>(begin: 1.0, end: 0.9).animate(_animationController!);
   }
@@ -48,13 +48,11 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       setState(() {
         name = value!['name'];
         surname = value['surname'];
-        print("Printing name");
-        print(name);
       });
     }
   }  
 
-  void SOSsent() {
+  void sosSent() {
     showDialog(
       context: context, // Burada hata çıkıyor hala.
       builder: (context) {
@@ -70,7 +68,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
     );
   }
 
-  void WarnMessage(BuildContext context,latitude,longitude) {
+  void warnMessage(BuildContext context,latitude,longitude) {
     FirebaseDocument();
     // set up the buttons
     Widget cancelButton = TextButton(
@@ -83,8 +81,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       child: Text(LocaleKeys.Profile_sosMobile_Continue.tr(), style: const TextStyle(color: Colors.white, fontSize: 24),),
       onPressed:  () {
         Navigator.of(context, rootNavigator: true).pop();
-        print("key is pressed so sending sos message");
-        SendSosMessage(latitude,longitude); // Send SOS message if key pressed
+        sendSosMessage(latitude,longitude); // Send SOS message if key pressed
         Navigator.pop(context);
         
       },
@@ -116,7 +113,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
 
   }
 
-  Future<void> SendSosMessage(latitude,longitude) async {
+  Future<void> sendSosMessage(latitude,longitude) async {
     FirebaseDocument();
 
     _reportService
@@ -124,7 +121,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                   ("$name $surname"),
                   GeoPoint(latitude, longitude),
         ).then((value) {
-          SOSsent();
+          sosSent();
     });
   
   }
@@ -173,7 +170,6 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
       onTapUp: _onTapUp,
       onTap: () {
         // Burada mevcut konumunuzu alıp SOS mesajı gönderme işlemini tetikleyin
-        print("SOS mesajı gönderiliyor...");
         _getCurrentLocation().then((position) {
           if (mounted) {
             setState(() {
@@ -181,13 +177,13 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
               _longitude = position.longitude;
             });
             FirebaseDocument();
-            WarnMessage(context, _latitude, _longitude);
+            warnMessage(context, _latitude, _longitude);
           }
         });
       },
       child: ScaleTransition(
         scale: _buttonScale!,
-        child: CircleAvatar(
+        child: const CircleAvatar(
           radius: 80,
           backgroundColor: Colors.red,
           child: Icon(Icons.warning, size: 80, color: Colors.white),
@@ -199,55 +195,6 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 10,
-          title: Text(
-            LocaleKeys.Profile_sosMobile_sosButton.tr(),
-            style: TextStyle(color: Colors.black87),
-          ),
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black87,
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context)=> SimpleDialog(
-                      title: Text(LocaleKeys.Profile_sosMobile_sosButton.tr()),
-                      contentPadding: const EdgeInsets.all(20.0),
-                      children: [
-                        Text(LocaleKeys.Profile_sosMobile_info.tr()),
-                        TextButton(
-                          onPressed:() {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                            LocaleKeys.Profile_sosMobile_Close.tr(),
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        )
-                      ],
-
-                    )
-                  );
-                },
-                child: const Icon(
-                  Icons.info_outline,
-                  color: Colors.black87,
-                ),
-              ),
-            )
-          ],
-      ),
-
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -262,12 +209,12 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                   style: GoogleFonts.lato(
                       fontSize: 96,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 217, 0, 0)
+                      color: const Color.fromARGB(255, 217, 0, 0)
                   ),
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 60,
               ),
               Center(
                 child: Column(
@@ -289,7 +236,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                   style: GoogleFonts.openSans(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 0, 0, 0)
+                      color: const Color.fromARGB(255, 0, 0, 0)
                   ),
                 ),
               ),

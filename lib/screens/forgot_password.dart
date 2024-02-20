@@ -148,7 +148,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(
-              LocaleKeys.forget_password_sendPswrd.tr(),
+              LocaleKeys.forget_password_sendPassword.tr(),
               style: const TextStyle(
                 color: Colors.white,
               ),

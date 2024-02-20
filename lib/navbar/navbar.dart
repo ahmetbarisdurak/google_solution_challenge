@@ -2,16 +2,19 @@ import 'dart:math';
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
-import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
-import 'package:google_solution_challenge/screens/home/maps/map_custom.dart';
-import 'package:google_solution_challenge/screens/home/camera/CameraHome.dart';
+import 'package:google_solution_challenge/screens/home_screens/building_risk/building_risk.dart';
+import 'package:google_solution_challenge/screens/home_screens/earthquaker/home_page.dart';
+import 'package:google_solution_challenge/screens/home_screens/image_classification/image_classification.dart';
+import 'package:google_solution_challenge/screens/home_screens/maps/map_custom.dart';
+import 'package:google_solution_challenge/screens/home_screens//camera/CameraHome.dart';
 import 'package:google_solution_challenge/screens/profile/sos_rev.dart';
 import "package:flutter/material.dart";
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import '../screens/home/camera/ar_camera.dart';
+
+import '../screens/home_screens/camera/ar_camera.dart';
 
 
 class NavBar extends StatefulWidget {
@@ -127,6 +130,8 @@ class _NavBarState extends State<NavBar> {
               ObjectsOnPlanesWidget(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
+              BuildingInfoForm(),
+              ImageClassification(),
             ],
           ),
           bottomNavigationBar: Container(
@@ -139,7 +144,7 @@ class _NavBarState extends State<NavBar> {
             ),
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               child: GNav(
                 selectedIndex: controller.tabIndex,
                 onTabChange: controller.changeTabIndex,
@@ -148,7 +153,7 @@ class _NavBarState extends State<NavBar> {
                 activeColor: Colors.white,
                 tabBackgroundColor: const Color.fromARGB(43, 233, 125, 71),
                 gap: 10.0,
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(0.0),
                 tabs: const [
                   GButton(
                     icon: Icons.home,
@@ -164,11 +169,19 @@ class _NavBarState extends State<NavBar> {
                   ),
                   GButton(
                     icon: Icons.camera_alt,
-                    text: "Camera",
+                    text: "Cam",
                   ),
                   GButton(
                     icon: Icons.map,
                     text: "Maps",
+                  ),
+                  GButton(
+                    icon: Icons.grade,
+                    text: "Risk",
+                  ),
+                  GButton(
+                    icon: Icons.house_outlined,
+                    text: "Clf",
                   ),
                 ],
               ),

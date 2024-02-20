@@ -1,11 +1,7 @@
-//import 'package:google_solution_challenge/screens/home/donation/donation_main.dart';
-import 'package:google_solution_challenge/screens/home/earthquaker/home_page.dart';
-import 'package:google_solution_challenge/translations/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:google_solution_challenge/screens/home_screens/earthquaker/home_page.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
-import 'home/maps/map_custom.dart';
-//import 'home/volunteer/volunteer.dart';
+import 'home_screens/maps/map_custom.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          LocaleKeys.Home_HomePage.tr(),
+          "HomePage",
           style: GoogleFonts.prozaLibre(
             color: Colors.blueGrey,
             fontSize: 25,
@@ -57,23 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shadowColor: Colors.blueGrey,
                     side: const BorderSide(color: Color(0xffe97d47), width: 4),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0))),
-                // BLOOD BUTTON
-                child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset(
-                        "assets/images/myvh_black.png",
-                        width: 75,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      SizedBox(
-                        width: 180,
-                        child: Text(LocaleKeys.Home_MYVH.tr(),),
-                      ),
-                    ]),
+                        borderRadius: BorderRadius.circular(25.0))), child: null,
               ),
               const SizedBox(
                 height: 30,
@@ -97,21 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     shadowColor: const Color(0xffe97d47),
                     side: const BorderSide(color: Color(0xffe97d47), width: 4),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0))),
+                        borderRadius: BorderRadius.circular(25.0))), child: null,
                 // BE VOLUNTEER
-                child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset(
-                        "assets/images/hands_black.png",
-                        width: 75,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(LocaleKeys.Home_Volunteer.tr(),),
-                      //SizedBox(width: 75,),
-                    ]),
               ),
               const SizedBox(
                 height: 30,
@@ -136,21 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shadowColor: const Color(0xffe97d47),
                     side: const BorderSide(color: Color(0xffe97d47), width: 4),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0))),
-                // BOX BUTTON
-                //icon: Icon(Icons.wallet_giftcard_outlined),
-                child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(
-                        "assets/images/donation_main_black.png",
-                        width: 75,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(LocaleKeys.Home_Donate.tr(),),
-                    ]),
+                        borderRadius: BorderRadius.circular(25.0))), child: null,
               ),
               const SizedBox(
                 height: 30,
@@ -184,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(LocaleKeys.Home_Maps.tr(),),
+                      Text("Home Maps",),
                       //SizedBox(width: 75,),
                     ]),
               ),

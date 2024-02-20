@@ -17,10 +17,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  int play_pause = 0;
+  int playPause = 0;
   final player = AudioPlayer();
 
-  void sos_warning() {
+  void sosWarning() {
     showDialog(
       context: context,
       builder: (context) {
@@ -86,19 +86,17 @@ class _MainPageState extends State<MainPage> {
                           ),
                           child: GestureDetector(
                             onTap: () {
-                              if (play_pause == 0) {
+                              if (playPause == 0) {
                                 player.play(AssetSource("sossound.mp3"));
                                 //player.stop();
-                                sos_warning();
+                                sosWarning();
                                 setState(() {
-                                  play_pause = 1;
-                                  print(play_pause);
+                                  playPause = 1;
                                 });
                               } else {
                                 player.stop();
                                 setState(() {
-                                  play_pause = 0;
-                                  print(play_pause);
+                                  playPause = 0;
                                 });
                               }
                             },

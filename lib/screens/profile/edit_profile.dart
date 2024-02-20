@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:google_solution_challenge/translations/locale_keys.g.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 
 class EditProfilePage extends StatefulWidget {
@@ -34,8 +33,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       setState(() {
         String a = value['name'] ?? ''; // name null ise boş string ata
         String b = value['surname'] ?? ''; // surname null ise boş string ata
-        print("Print ediyorum");
-        print(a.toString());
+
         username = "$a $b";
       });
     }
@@ -84,7 +82,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 20, bottom: 20),
                 child: buildTextField(descriptionController,
-                    LocaleKeys.profileEditDescription.tr(), false),
+                    LocaleKeys.profileEditStatus.tr(), false),
               ),
               Text(LocaleKeys.profileEditPasswordChange.tr()),
               Padding(
