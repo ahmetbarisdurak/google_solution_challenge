@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import '../screens/home_screens/camera/ar_camera.dart';
+
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -125,7 +127,7 @@ class _NavBarState extends State<NavBar> {
             children: [
               EarthquakerPage(),
               SOSButton(),
-              //ObjectsOnPlanesWidget(), // AR page
+              ObjectsOnPlanesWidget(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
               BuildingInfoForm(),
