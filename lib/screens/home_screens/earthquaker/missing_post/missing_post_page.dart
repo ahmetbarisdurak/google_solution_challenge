@@ -41,7 +41,7 @@ class _MissingPostPageState extends State<MissingPostPage> {
 
   // for map
   PickResult? selectedPlace;
-  String androidApiKey = "AIzaSyArrKwbIUKX0iZqzYWM4EtvNWbpAC0au1s"; // API key for maps
+  String androidApiKey = "AIzaSyDqTggaCqOkh0DBWGiB3zXKO45ca9Lkq2c"; // API key for maps
 
   bool _mapsInitialized = false;
   final String _mapsRenderer = "latest";
