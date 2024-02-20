@@ -26,10 +26,7 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
   List<ARNode> nodes = [];
   List<ARAnchor> anchors = [];
 
-  double? xValue;
-  double? yValue;
-  double? zValue;
-  bool scaleSet = false;
+  double? scaleValue;
 
   @override
   void dispose() {
@@ -60,8 +57,8 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
                     child: Text("Remove Everything"),
                   ),
                   ElevatedButton(
-                    onPressed: () => _showScaleInputDialog(context),
-                    child: Text("Set Scale"),
+                    onPressed: () => _showBMIInputDialog(context),
+                    child: Text("Update Height and Weight"),
                   ),
                 ],
               ),
@@ -72,34 +69,30 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
     );
   }
 
-  Future<void> _showScaleInputDialog(BuildContext context) async {
+  Future<void> _showBMIInputDialog(BuildContext context) async {
+    double? height;
+    double? weight;
+
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Enter Scale Values"),
+          title: Text("Enter Height and Weight"),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'X Value'),
+                decoration: InputDecoration(labelText: 'Height (in meters)'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
-                  xValue = double.tryParse(value);
+                  height = double.tryParse(value);
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Y Value'),
+                decoration: InputDecoration(labelText: 'Weight (in kilograms)'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
-                  yValue = double.tryParse(value);
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Z Value'),
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  zValue = double.tryParse(value);
+                  weight = double.tryParse(value);
                 },
               ),
             ],
@@ -113,13 +106,30 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
             ),
             TextButton(
               onPressed: () {
-                if (xValue != null && yValue != null && zValue != null) {
-                  scaleSet = true;
+                if (height != null && weight != null) {
+                  double bmi = calculateBMI(height!, weight!);
+                  print(bmi);
+                  print("denemeARRRdeneme31");
+                  if (bmi < 16) {
+                    scaleValue = 0.3;
+                  } else if (bmi >= 16 && bmi < 17) {
+                    scaleValue = 0.5;
+                  } else if (bmi >= 18.5 && bmi < 25) {
+                    scaleValue = 0.6;
+                  } else if (bmi >= 25 && bmi < 30) {
+                    scaleValue = 0.7;
+                  } else if (bmi >= 30 && bmi < 35) {
+                    scaleValue = 0.8;
+                  } else if (bmi >= 35 && bmi < 40) {
+                    scaleValue = 0.9;
+                  } else if (bmi > 40 ) {
+                    scaleValue = 1.0;
+                  };
                   Navigator.of(context).pop();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Please enter valid scale values'),
+                      content: Text('Please enter valid height and weight values'),
                     ),
                   );
                 }
@@ -130,6 +140,10 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
         );
       },
     );
+  }
+
+  double calculateBMI(double height, double weight) {
+    return weight / (height/100 * height/100);
   }
 
   void onARViewCreated(
@@ -147,20 +161,11 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
       customPlaneTexturePath: "Images/triangle.png",
       showWorldOrigin: true,
       showAnimatedGuide: false,
-
-
     );
     this.arObjectManager!.onInitialize();
 
     this.arSessionManager!.onPlaneOrPointTap = onPlaneOrPointTapped;
     this.arObjectManager!.onNodeTap = onNodeTapped;
-  }
-
-  Future<void> onRemoveEverything() async {
-    anchors.forEach((anchor) {
-      this.arAnchorManager!.removeAnchor(anchor);
-    });
-    anchors = [];
   }
 
   Future<void> onNodeTapped(List<String> nodes) async {
@@ -169,8 +174,8 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
   }
 
   Future<void> onPlaneOrPointTapped(List<ARHitTestResult> hitTestResults) async {
-    if (!scaleSet) {
-      await _showScaleInputDialog(context);
+    if (scaleValue == null) {
+      await _showBMIInputDialog(context);
     }
 
     var singleHitTestResult = hitTestResults.firstWhere(
@@ -178,7 +183,7 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
       orElse: () => throw Exception("No plane found"),
     );
     if (singleHitTestResult != null) {
-      var scale = Vector3(xValue ?? 1.0, yValue ?? 1.0, zValue ?? 1.0);
+      var scale = Vector3(scaleValue!, scaleValue!, scaleValue!);
       var newAnchor = ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
       bool? didAddAnchor = await this.arAnchorManager!.addAnchor(newAnchor);
       if (didAddAnchor!) {
@@ -200,5 +205,12 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
         this.arSessionManager!.onError("Adding Anchor failed");
       }
     }
+  }
+
+  Future<void> onRemoveEverything() async {
+    anchors.forEach((anchor) {
+      this.arAnchorManager!.removeAnchor(anchor);
+    });
+    anchors = [];
   }
 }
