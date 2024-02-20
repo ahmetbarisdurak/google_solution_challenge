@@ -23,7 +23,7 @@ class CustomSnackBarContent extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: const Color(0xffe97d47), width: 3)),
+                border: Border.all(color: Colors.black, width: 3)),
             child: Row(
               children: [
                 const SizedBox(width: 48),
@@ -51,36 +51,6 @@ class CustomSnackBarContent extends StatelessWidget {
                 ),
               ],
             )),
-        Positioned(
-          bottom: 0,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20)),
-            child: SvgPicture.asset(
-              "assets/images/bubbles.svg",
-              height: 48,
-              width: 40,
-              color: const Color(0xffe97d47),
-            ),
-          ),
-        ),
-        Positioned(
-          top: -20,
-          left: 0,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              SvgPicture.asset("assets/images/fail.svg",
-                  height: 40, color: const Color(0xffe97d47)),
-              Positioned(
-                top: 10,
-                child: SvgPicture.asset(
-                  "assets/images/close.svg",
-                  height: 16,
-                ),
-              )
-            ],
-          ),
-        )
       ],
     );
   }

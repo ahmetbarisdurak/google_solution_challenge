@@ -1,7 +1,6 @@
 import 'package:google_solution_challenge/screens/intro_screens/intro_screen_1.dart';
 import 'package:google_solution_challenge/screens/intro_screens/intro_screen_2.dart';
 import 'package:google_solution_challenge/screens/intro_screens/intro_screen_3.dart';
-import 'package:google_solution_challenge/screens/intro_screens/intro_screen_4.dart';
 import 'package:google_solution_challenge/screens/login/login_page.dart';
 import 'package:google_solution_challenge/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -37,7 +36,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               IntroScreen1(),
               IntroScreen2(),
               IntroScreen3(),
-              IntroScreen4(),
             ],
           ),
           Positioned(
