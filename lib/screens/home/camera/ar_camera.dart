@@ -26,6 +26,11 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
   List<ARNode> nodes = [];
   List<ARAnchor> anchors = [];
 
+  double? xValue;
+  double? yValue;
+  double? zValue;
+  bool scaleSet = false;
+
   @override
   void dispose() {
     super.dispose();
@@ -35,33 +40,104 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Anchors & Objects on Planes'),
-        ),
-        body: Container(
-            child: Stack(children: [
-              ARView(
-                onARViewCreated: onARViewCreated,
-                planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+      appBar: AppBar(
+        title: const Text('Anchors & Objects on Planes'),
+      ),
+      body: Container(
+        child: Stack(
+          children: [
+            ARView(
+              onARViewCreated: onARViewCreated,
+              planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+            ),
+            Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: onRemoveEverything,
+                    child: Text("Remove Everything"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _showScaleInputDialog(context),
+                    child: Text("Set Scale"),
+                  ),
+                ],
               ),
-              Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                          onPressed: onRemoveEverything,
-                          child: Text("Remove Everything")),
-                    ]),
-              )
-            ])));
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showScaleInputDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Enter Scale Values"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: 'X Value'),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  xValue = double.tryParse(value);
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Y Value'),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  yValue = double.tryParse(value);
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Z Value'),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  zValue = double.tryParse(value);
+                },
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                if (xValue != null && yValue != null && zValue != null) {
+                  scaleSet = true;
+                  Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please enter valid scale values'),
+                    ),
+                  );
+                }
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void onARViewCreated(
       ARSessionManager arSessionManager,
       ARObjectManager arObjectManager,
       ARAnchorManager arAnchorManager,
-      ARLocationManager arLocationManager) {
+      ARLocationManager arLocationManager,
+      ) {
     this.arSessionManager = arSessionManager;
     this.arObjectManager = arObjectManager;
     this.arAnchorManager = arAnchorManager;
@@ -78,9 +154,6 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
   }
 
   Future<void> onRemoveEverything() async {
-    /*nodes.forEach((node) {
-      this.arObjectManager.removeNode(node);
-    });*/
     anchors.forEach((anchor) {
       this.arAnchorManager!.removeAnchor(anchor);
     });
@@ -92,25 +165,29 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
     this.arSessionManager!.onError("Tapped $number node(s)");
   }
 
-  Future<void> onPlaneOrPointTapped(
-      List<ARHitTestResult> hitTestResults) async {
+  Future<void> onPlaneOrPointTapped(List<ARHitTestResult> hitTestResults) async {
+    if (!scaleSet) {
+      await _showScaleInputDialog(context);
+    }
+
     var singleHitTestResult = hitTestResults.firstWhere(
-            (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
+          (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane,
+      orElse: () => throw Exception("No plane found"),
+    );
     if (singleHitTestResult != null) {
-      var newAnchor =
-      ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
+      var scale = Vector3(xValue ?? 1.0, yValue ?? 1.0, zValue ?? 1.0);
+      var newAnchor = ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
       bool? didAddAnchor = await this.arAnchorManager!.addAnchor(newAnchor);
       if (didAddAnchor!) {
         this.anchors.add(newAnchor);
-        // Add note to anchor
         var newNode = ARNode(
-            type: NodeType.localGLTF2,
-            uri: "assets/ar_models/Box.gltf",
-            scale: Vector3(0.2, 0.2, 0.2),
-            position: Vector3(0.0, 0.0, 0.0),
-            rotation: Vector4(1.0, 0.0, 0.0, 0.0));
-        bool? didAddNodeToAnchor =
-        await this.arObjectManager!.addNode(newNode, planeAnchor: newAnchor);
+          type: NodeType.localGLTF2,
+          uri: "assets/ar_models/Box.gltf",
+          scale: scale,
+          position: Vector3(0.0, 0.0, 0.0),
+          rotation: Vector4(1.0, 0.0, 0.0, 0.0),
+        );
+        bool? didAddNodeToAnchor = await this.arObjectManager!.addNode(newNode, planeAnchor: newAnchor);
         if (didAddNodeToAnchor!) {
           this.nodes.add(newNode);
         } else {
@@ -119,17 +196,6 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
       } else {
         this.arSessionManager!.onError("Adding Anchor failed");
       }
-      /*
-      // To add a node to the tapped position without creating an anchor, use the following code (Please mind: the function onRemoveEverything has to be adapted accordingly!):
-      var newNode = ARNode(
-          type: NodeType.localGLTF2,
-          uri: "Models/Chicken_01/Chicken_01.gltf",
-          scale: Vector3(0.2, 0.2, 0.2),
-          transformation: singleHitTestResult.worldTransform);
-      bool didAddWebNode = await this.arObjectManager.addNode(newNode);
-      if (didAddWebNode) {
-        this.nodes.add(newNode);
-      }*/
     }
   }
 }
