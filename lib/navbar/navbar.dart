@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_solution_challenge/controller/controller.dart';
 import 'package:google_solution_challenge/screens/home_screens/building_risk/building_risk.dart';
 import 'package:google_solution_challenge/screens/home_screens/earthquaker/home_page.dart';
+import 'package:google_solution_challenge/screens/home_screens/image_classification/image_classification.dart';
 import 'package:google_solution_challenge/screens/home_screens/maps/map_custom.dart';
 import 'package:google_solution_challenge/screens/home_screens//camera/CameraHome.dart';
 import 'package:google_solution_challenge/screens/profile/sos_rev.dart';
@@ -127,7 +128,7 @@ class _NavBarState extends State<NavBar> {
               //ObjectsOnPlanesWidget(), // AR page
               CameraHomePage(cameras!), // kamera buraya gelecek
               MapUIcustom(),
-              BuildingInfoForm(),
+              ImageClassification(),
             ],
           ),
           bottomNavigationBar: Container(
