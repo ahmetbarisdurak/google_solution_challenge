@@ -31,7 +31,7 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
@@ -40,12 +40,12 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
           color: Colors.blueGrey[900],
 
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.blueGrey[300],
         title: Center( // Programın isminin yazdığı kısım
           child: Text(
             LocaleKeys.earthquaker_title.tr(),
-            style: GoogleFonts.lobster(
-              color: Colors.red,
+            style: GoogleFonts.poppins(
+              color: Colors.black87,
               fontSize: 28,
               fontWeight: FontWeight.w600,
               height: 1.355,
@@ -64,7 +64,7 @@ class _EarthquakerPageState extends State<EarthquakerPage> {
             icon: const Icon(Icons.search_outlined),
             onPressed: () => Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const InformationScreen())),
-            color: Colors.blueGrey,
+            color: Colors.blueGrey[900],
           ),
         ],
       ),

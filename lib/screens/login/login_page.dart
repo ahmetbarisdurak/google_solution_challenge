@@ -109,7 +109,7 @@ class _MainPageState extends State<MainPage> {
               style: TextStyle(
                   fontFamily: "Pacifico",
                   fontSize: 46.0,
-                  color: Colors.red,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 15.0),

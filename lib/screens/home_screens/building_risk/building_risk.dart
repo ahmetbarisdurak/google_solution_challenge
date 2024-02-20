@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_solution_challenge/screens/home_screens/building_risk/damage_predictor.dart';
 import 'building_info.dart'; // Import your model
 
@@ -60,9 +61,54 @@ class _BuildingInfoFormState extends State<BuildingInfoForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: Text("Enter Building Information"),
+        backgroundColor: Colors.blueGrey[300],
+        title:
+        Text(
+            "Building Info",
+            style: GoogleFonts.albertSans(
+              color: Colors.grey[900],
+              fontSize: 29,
+              fontWeight: FontWeight.bold,
+              height: 1.355,
+            )
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context)=> SimpleDialog(
+                      title: Text("Building Risk Controller"),
+                      contentPadding: const EdgeInsets.all(20.0),
+                      children: [
+                        Text("Controls the risk of the building with given information."),
+                        TextButton(
+                          onPressed:() {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Close",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        )
+                      ],
+
+                    )
+                );
+              },
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.black87,
+              ),
+            ),
+          )
+        ],
       ),
+
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -267,6 +313,7 @@ class _BuildingInfoFormState extends State<BuildingInfoForm> {
         },
         tooltip: 'Save',
         child: Icon(Icons.save),
+        backgroundColor: Colors.black,
       ),
     );
   }

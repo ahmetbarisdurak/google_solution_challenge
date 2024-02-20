@@ -175,9 +175,8 @@ class _MapUIStatecustom extends State<MapUIcustom> {
       appBar: AppBar(
         elevation: 0,
 
-        backgroundColor: Colors.transparent,
-        title: Center(
-          child : Text(
+        backgroundColor: Colors.blueGrey[300],
+        title: Text(
             LocaleKeys.maps_title.tr(),
             style: GoogleFonts.albertSans(
               color: Colors.grey[900],
@@ -186,7 +185,39 @@ class _MapUIStatecustom extends State<MapUIcustom> {
               height: 1.355,
             )
           ),
-        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context)=> SimpleDialog(
+                      title: Text("Maps"),
+                      contentPadding: const EdgeInsets.all(20.0),
+                      children: [
+                        Text("Shows missing person reports and SOS calls on the map."),
+                        TextButton(
+                          onPressed:() {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Close",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        )
+                      ],
+
+                    )
+                );
+              },
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.black87,
+              ),
+            ),
+          )
+        ],
       ),
       body: Stack(
         children: <Widget>[

@@ -195,6 +195,47 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey[300],
+        elevation: 10,
+        title: Text(
+          LocaleKeys.Profile_sosMobile_sosButton.tr(),
+          style: TextStyle(color: Colors.black87),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context)=> SimpleDialog(
+                      title: Text("SOS Button Info"),
+                      contentPadding: const EdgeInsets.all(20.0),
+                      children: [
+                        Text("Use this when needed!"),
+                        TextButton(
+                          onPressed:() {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Close",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        )
+                      ],
+
+                    )
+                );
+              },
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.black87,
+              ),
+            ),
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -214,7 +255,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 20,
               ),
               Center(
                 child: Column(
@@ -244,6 +285,7 @@ class _SOSButtonState extends State<SOSButton> with SingleTickerProviderStateMix
           ),
         ),
       ),
+      backgroundColor: Colors.blueGrey,
     );
   }
 }

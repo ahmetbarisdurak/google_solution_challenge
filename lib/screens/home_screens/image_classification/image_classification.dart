@@ -1,12 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:image/image.dart' as img;
-import 'package:tflite_flutter/tflite_flutter.dart' as tfl;
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
 
 
 class ImageClassification extends StatefulWidget {
@@ -87,25 +84,58 @@ class _ImageClassificationState extends State<ImageClassification> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        centerTitle: true,
+        backgroundColor: Colors.blueGrey[300],
         title: Text(
-          'Animal Classification',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-            fontSize: 23,
-          ),
+            "Damage Classification",
+            style: GoogleFonts.albertSans(
+              color: Colors.grey[900],
+              fontSize: 29,
+              fontWeight: FontWeight.bold,
+              height: 1.355,
+            )
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context)=> SimpleDialog(
+                      title: Text("Damage Classification"),
+                      contentPadding: const EdgeInsets.all(20.0),
+                      children: [
+                        Text("Classifies the damage type with given image."),
+                        TextButton(
+                          onPressed:() {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                           "Close",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        )
+                      ],
+
+                    )
+                );
+              },
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.black87,
+              ),
+            ),
+          )
+        ],
       ),
       body: Container(
-        color: Color.fromRGBO(68, 190, 255, 0.8),
+        color: Colors.blueGrey,
         padding: EdgeInsets.symmetric(horizontal: 35, vertical: 50),
         child: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.all(30),
           decoration: BoxDecoration(
-            color: Colors.indigo,
+            color: Colors.blueGrey,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Column(
@@ -164,7 +194,7 @@ class _ImageClassificationState extends State<ImageClassification> {
                         padding:
                         EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Text(
@@ -182,7 +212,7 @@ class _ImageClassificationState extends State<ImageClassification> {
                         padding:
                         EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Text(

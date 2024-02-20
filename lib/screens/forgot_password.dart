@@ -76,7 +76,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     style: TextStyle(
                         fontFamily: "Pacifico",
                         fontSize: 30.0,
-                        color: Colors.red,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -86,7 +86,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       fontSize: 15.0,
                       letterSpacing: 2.5,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(
@@ -144,7 +144,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           width: 250.0,
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Colors.black,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(

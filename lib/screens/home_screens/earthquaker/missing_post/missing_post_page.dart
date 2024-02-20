@@ -104,7 +104,7 @@ class _MissingPostPageState extends State<MissingPostPage> {
           errorText: "Your post has been shared",
         ),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.blueGrey,
         elevation: 0,
       ));
       Navigator.pop(context);
@@ -121,13 +121,13 @@ class _MissingPostPageState extends State<MissingPostPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
-          color: const Color(0xffe97d47),
+          color: Colors.black,
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.blueGrey[300],
         title: Text(
           LocaleKeys.earthquaker_debris_page_create.tr(),
           style: GoogleFonts.prozaLibre(
-            color: const Color(0xffe97d47),
+            color: Colors.black,
             fontSize: 20,
             fontWeight: FontWeight.w600,
             height: 1.355,
@@ -192,7 +192,7 @@ class _MissingPostPageState extends State<MissingPostPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
-                color: const Color(0xffe97d47),
+                color: Colors.black,
                 margin: const EdgeInsets.symmetric(
                     horizontal: 25.0, vertical: 10.0),
                 child: Padding(
@@ -220,11 +220,12 @@ class _MissingPostPageState extends State<MissingPostPage> {
           ],
         ),
       ),
+      backgroundColor: Colors.blueGrey,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: postReport,
         icon: const Icon(Icons.save),
         label: Text(LocaleKeys.earthquaker_debris_page_post.tr()),
-        backgroundColor: const Color(0xffe97d47),
+        backgroundColor: Colors.black,
       ),
     );
   }
@@ -275,7 +276,7 @@ class _MissingPostPageState extends State<MissingPostPage> {
           width: 250.0,
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           decoration: BoxDecoration(
-              color: const Color(0xffe97d47),
+              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(12.0)),
           child: Center(
             child: Text(

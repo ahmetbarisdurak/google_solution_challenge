@@ -7,7 +7,7 @@ abstract class  LocaleKeys {
   static const forget_password_forgot_title = 'forget_password_forgot_title';
   static const forget_password_enterEmail = 'forget_password_enterEmail';
   static const forget_password_enterHere = 'forget_password_enterHere';
-  static const forget_password_sendPassword = 'forget_password_sendPswrd';
+  static const forget_password_sendPassword = 'forget_password_sendPassword';
 
   static const openingCards1Title = 'opening_cards_1_title';
   static const openingCards1 = 'opening_cards_1';

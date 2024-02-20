@@ -61,18 +61,18 @@ class _NavBarState extends State<NavBar> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Deprem Uyarısı!'),
+          title: const Text('Earthquake warning!'),
           content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Yakınınızda bir deprem meydana geldi.'), // locale keys kısmına eklenecek
-                Text('Lütfen güvenli bir yere gidin ve talimatları takip edin.'), // locale keys kısmına eklenecek
+                Text('There is an earthquake happened nearby!'), // locale keys kısmına eklenecek
+                Text('Please go to a safe zone and follow the instructions.'), // locale keys kısmına eklenecek
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Anladım'), // locale keys kısmına eklenecek.
+              child: const Text('Okay.'), // locale keys kısmına eklenecek.
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -110,9 +110,6 @@ class _NavBarState extends State<NavBar> {
     availableCameras().then((availableCameras) {
       setState(() {
         cameras = availableCameras;
-        print("Cameraları okuyoruz");
-        print(cameras);
-        print(cameras?.length);
       });
     });
   }
@@ -125,18 +122,18 @@ class _NavBarState extends State<NavBar> {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              EarthquakerPage(),
-              SOSButton(),
+              EarthquakerPage(), // Home page
+              SOSButton(), // SOS button page
               ObjectsOnPlanesWidget(), // AR page
-              CameraHomePage(cameras!), // kamera buraya gelecek
-              MapUIcustom(),
-              BuildingInfoForm(),
-              ImageClassification(),
+              CameraHomePage(cameras!), // Object detection page
+              MapUIcustom(), // Map page
+              BuildingInfoForm(), // Building risk page
+              ImageClassification(), // Building photo classification page
             ],
           ),
           bottomNavigationBar: Container(
-            decoration: const BoxDecoration(
-              color: Colors.transparent,
+            decoration: BoxDecoration(
+              color: (Colors.blueGrey[300])!,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
                 topRight: Radius.circular(20.0),
@@ -148,7 +145,7 @@ class _NavBarState extends State<NavBar> {
               child: GNav(
                 selectedIndex: controller.tabIndex,
                 onTabChange: controller.changeTabIndex,
-                backgroundColor: Colors.transparent,
+                backgroundColor: (Colors.blueGrey[300])!,
                 color: Colors.black,
                 activeColor: Colors.white,
                 tabBackgroundColor: const Color.fromARGB(43, 233, 125, 71),

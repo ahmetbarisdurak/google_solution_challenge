@@ -52,20 +52,17 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           colorScheme:
-          ColorScheme.fromSwatch().copyWith(secondary: const Color(0xff96c9f1)),
+          ColorScheme.fromSwatch().copyWith(secondary: Colors.blueGrey),
         ),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         home: Scaffold(
+          backgroundColor: Colors.blueGrey,
           body: LayoutBuilder(
             builder: (context, constraints) {
-              if (constraints.maxWidth < 300) {
-                return const AuthPage();
-              } else {
-                return const AuthPage();
-              }
+              return const AuthPage();
             },
           ),
         ),

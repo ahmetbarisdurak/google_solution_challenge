@@ -56,7 +56,7 @@ class _CameraHomePageState extends State<CameraHomePage> {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff96c9f1),
+        backgroundColor: Colors.blueGrey[300],
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -64,6 +64,39 @@ class _CameraHomePageState extends State<CameraHomePage> {
                 _model = "";
               });
             }),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context)=> SimpleDialog(
+                      title: Text("Object Detection"),
+                      contentPadding: const EdgeInsets.all(20.0),
+                      children: [
+                        Text("Detect objects and see if they are dangerous in earthquake or not."),
+                        TextButton(
+                          onPressed:() {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Close",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        )
+                      ],
+
+                    )
+                );
+              },
+              child: const Icon(
+                Icons.info_outline,
+                color: Colors.black87,
+              ),
+            ),
+          )
+        ],
         title:
           Text(
               "Object Detection",
@@ -83,16 +116,16 @@ class _CameraHomePageState extends State<CameraHomePage> {
           children: <Widget>[
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff96c9f1), // background
-                foregroundColor: Colors.black, // foreground
+                backgroundColor: Colors.black, // background
+                foregroundColor: Colors.white, // foreground
               ),
               onPressed: () => onSelect(ssd),
               child: const Text(ssd),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff96c9f1), // background
-                foregroundColor: Colors.black, // foreground
+                backgroundColor: Colors.black, // background
+                foregroundColor: Colors.white, // foreground
               ),
               onPressed: () => onSelect(yolo),
               child: const Text(yolo),
